@@ -1,354 +1,439 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User List</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard/dist/web/static/pretendard.css">
-    <link rel="stylesheet" href="styles/style.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/pretendard/dist/web/static/pretendard.css"
+    />
+    <link rel="stylesheet" href="styles/style.css" />
     <style>
-        .card {
-            margin-bottom: 1rem;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-        }
-        .card-body {
-            padding: 1rem;
-        }
-        .card-title {
-            margin-bottom: 1rem;
-            font-size: 1.25rem;
-            font-weight: 500;
-        }
-        .education-form {
-            display: none;
-        }
-        .education-form input,
-        .education-form .buttons {
-            margin-bottom: 0.5rem;
-        }
-        .education-form .buttons {
-            display: flex;
-            justify-content: space-between;
-        }
-        .education-list .education-item {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #e9ecef;
-        }
-        .education-list .education-item:last-child {
-            border-bottom: none;
-        }
-        .education-list .edit-btn,
-        .education-list .delete-btn {
-            margin-left: 0.5rem;
-        }
-        .profile-input {
-            display: none;
-            margin-bottom: 0.5rem;
-        }
-        .profile-buttons {
-            display: none;
-            justify-content: space-between;
-        }
-        .btn-block {
-            width: 100%;
-        }
-        .image-upload {
-            display: none;
-            margin-bottom: 1rem;
-        }
-        .image-preview {
-            max-width: 100%;
-            height: auto;
-            margin-bottom: 1rem;
-        }
+      .card {
+        margin-bottom: 1rem;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+      }
+      .card-body {
+        padding: 1rem;
+      }
+      .card-title {
+        margin-bottom: 1rem;
+        font-size: 1.25rem;
+        font-weight: 500;
+      }
+      .education-form {
+        display: none;
+      }
+      .education-form input,
+      .education-form .buttons {
+        margin-bottom: 0.5rem;
+      }
+      .education-form .buttons {
+        display: flex;
+        justify-content: space-between;
+      }
+      .education-list .education-item {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #e9ecef;
+      }
+      .education-list .education-item:last-child {
+        border-bottom: none;
+      }
+      .education-list .edit-btn,
+      .education-list .delete-btn {
+        margin-left: 0.5rem;
+      }
+      .profile-input {
+        display: none;
+        margin-bottom: 0.5rem;
+      }
+      .profile-buttons {
+        display: none;
+        justify-content: space-between;
+      }
+      .btn-block {
+        width: 100%;
+      }
+      .image-upload {
+        display: none;
+        margin-bottom: 1rem;
+      }
+      .image-preview {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 1rem;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div id="navbar"></div>
     <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-4">
-                <div id="userProfile" class="mb-4">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="User Image" id="profileImage">
-                        <input type="text" class="form-control profile-input" id="imageURLInput" placeholder="이미지 URL 입력">
-                        <input type="file" class="form-control profile-input image-upload" id="imageFileInput" accept="image/*">
-                        <div class="image-preview" id="imagePreview"></div>
-                        <div class="card-body">
-                            <h5 class="card-title" id="nameText">황솜귤</h5>
-                            <input type="text" class="form-control profile-input" id="nameInput" placeholder="이름">
-                            <p class="card-text" id="emailText">hwangsomgyul@naver.com</p>
-                            <input type="text" class="form-control profile-input" id="emailInput" placeholder="이메일">
-                            <p class="card-text" id="bioText">설명이 아직 없습니다. 추가해 주세요.</p>
-                            <textarea class="form-control profile-input" id="bioInput" placeholder="자기소개"></textarea>
-                            <div id="profileButtons" class="profile-buttons">
-                                <button class="btn btn-primary btn-block" id="profileConfirmBtn">확인</button>
-                                <button class="btn btn-secondary btn-block" id="profileCancelBtn">취소</button>
-                            </div>
-                            <button class="btn btn-primary btn-block" id="editProfileBtn">Edit</button>
-                        </div>
-                    </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div id="userProfile" class="mb-4">
+            <div class="card">
+              <img
+                src="https://via.placeholder.com/150"
+                class="card-img-top"
+                alt="User Image"
+                id="profileImage"
+              />
+              <input
+                type="text"
+                class="form-control profile-input"
+                id="imageURLInput"
+                placeholder="이미지 URL 입력"
+              />
+              <input
+                type="file"
+                class="form-control profile-input image-upload"
+                id="imageFileInput"
+                accept="image/*"
+              />
+              <div class="image-preview" id="imagePreview"></div>
+              <div class="card-body">
+                <h5 class="card-title" id="nameText">황솜귤</h5>
+                <input
+                  type="text"
+                  class="form-control profile-input"
+                  id="nameInput"
+                  placeholder="이름"
+                />
+                <p class="card-text" id="emailText">hwangsomgyul@naver.com</p>
+                <input
+                  type="text"
+                  class="form-control profile-input"
+                  id="emailInput"
+                  placeholder="이메일"
+                />
+                <p class="card-text" id="bioText">
+                  설명이 아직 없습니다. 추가해 주세요.
+                </p>
+                <textarea
+                  class="form-control profile-input"
+                  id="bioInput"
+                  placeholder="자기소개"
+                ></textarea>
+                <div id="profileButtons" class="profile-buttons">
+                  <button
+                    class="btn btn-primary btn-block"
+                    id="profileConfirmBtn"
+                  >
+                    확인
+                  </button>
+                  <button
+                    class="btn btn-secondary btn-block"
+                    id="profileCancelBtn"
+                  >
+                    취소
+                  </button>
                 </div>
+                <button class="btn btn-primary btn-block" id="editProfileBtn">
+                  Edit
+                </button>
+              </div>
             </div>
-            <div class="col-md-8">
-                <div class="row">
-                    <!-- 학력 섹션 -->
-                    <div class="col-md-6 mb-3">
-                        <div class="card">
-                            <div class="card-body d-flex justify-content-between align-items-center">
-                                <h5 class="card-title">학력</h5>
-                                <button class="btn btn-primary btn-sm" id="addEducationBtn">+</button>
-                            </div>
-                            <div class="education-list" id="educationList"></div>
-                            <div class="education-form" id="educationForm">
-                                <h3>학력 추가</h3>
-                                <input type="text" id="schoolName" placeholder="학교 이름" class="form-control">
-                                <input type="text" id="major" placeholder="전공" class="form-control mt-2">
-                                <div class="mt-2">
-                                    <input type="radio" name="degree" value="재학중"> 재학중
-                                    <input type="radio" name="degree" value="학사졸업"> 학사 졸업
-                                    <input type="radio" name="degree" value="석사졸업"> 석사 졸업
-                                    <input type="radio" name="degree" value="박사졸업"> 박사 졸업
-                                </div>
-                                <div class="buttons mt-2">
-                                    <button id="confirmBtn" class="btn btn-primary">확인</button>
-                                    <button id="cancelBtn" class="btn btn-secondary">취소</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 수상이력 섹션 -->
-                    <div class="col-md-6 mb-3">
-                        <div class="card">
-                            <div class="card-body d-flex justify-content-between align-items-center">
-                                <h5 class="card-title">수상 이력</h5>
-                                <button class="btn btn-primary btn-sm">+</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 프로젝트 섹션 -->
-                    <div class="col-md-6 mb-3">
-                        <div class="card">
-                            <div class="card-body d-flex justify-content-between align-items-center">
-                                <h5 class="card-title">프로젝트</h5>
-                                <button class="btn btn-primary btn-sm">+</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 자격증 섹션 -->
-                    <div class="col-md-6 mb-3">
-                        <div class="card">
-                            <div class="card-body d-flex justify-content-between align-items-center">
-                                <h5 class="card-title">자격증</h5>
-                                <button class="btn btn-primary btn-sm">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+        <div class="col-md-8">
+          <div class="row">
+            <!-- 학력 섹션 -->
+            <div class="col-md-6 mb-3">
+              <div class="card">
+                <div
+                  class="card-body d-flex justify-content-between align-items-center"
+                >
+                  <h5 class="card-title">학력</h5>
+                  <button class="btn btn-primary btn-sm" id="addEducationBtn">
+                    +
+                  </button>
+                </div>
+                <div class="education-list" id="educationList"></div>
+                <div class="education-form" id="educationForm">
+                  <h3>학력 추가</h3>
+                  <input
+                    type="text"
+                    id="schoolName"
+                    placeholder="학교 이름"
+                    class="form-control"
+                  />
+                  <input
+                    type="text"
+                    id="major"
+                    placeholder="전공"
+                    class="form-control mt-2"
+                  />
+                  <div class="mt-2">
+                    <input type="radio" name="degree" value="재학중" /> 재학중
+                    <input type="radio" name="degree" value="학사졸업" /> 학사
+                    졸업
+                    <input type="radio" name="degree" value="석사졸업" /> 석사
+                    졸업
+                    <input type="radio" name="degree" value="박사졸업" /> 박사
+                    졸업
+                  </div>
+                  <div class="buttons mt-2">
+                    <button id="confirmBtn" class="btn btn-primary">
+                      확인
+                    </button>
+                    <button id="cancelBtn" class="btn btn-secondary">
+                      취소
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 수상이력 섹션 -->
+            <div class="col-md-6 mb-3">
+              <div class="card">
+                <div
+                  class="card-body d-flex justify-content-between align-items-center"
+                >
+                  <h5 class="card-title">수상 이력</h5>
+                  <button class="btn btn-primary btn-sm">+</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 프로젝트 섹션 -->
+            <div class="col-md-6 mb-3">
+              <div class="card">
+                <div
+                  class="card-body d-flex justify-content-between align-items-center"
+                >
+                  <h5 class="card-title">프로젝트</h5>
+                  <button class="btn btn-primary btn-sm">+</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 자격증 섹션 -->
+            <div class="col-md-6 mb-3">
+              <div class="card">
+                <div
+                  class="card-body d-flex justify-content-between align-items-center"
+                >
+                  <h5 class="card-title">자격증</h5>
+                  <button class="btn btn-primary btn-sm">+</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="scripts/users.js"></script>
-    <script src="scripts/navbar.js"></script>
+    <script src="./components/UserMVP/scripts/navbar.js"></script>
     <script>
-        // 학력 추가 및 수정 기능
-        let educationList = [];
-        let editingIndex = -1;
+      // 학력 추가 및 수정 기능
+      let educationList = [];
+      let editingIndex = -1;
 
-        document.getElementById('addEducationBtn').addEventListener('click', () => {
-            editingIndex = -1;
-            clearForm();
-            toggleEducationForm();
+      document
+        .getElementById("addEducationBtn")
+        .addEventListener("click", () => {
+          editingIndex = -1;
+          clearForm();
+          toggleEducationForm();
         });
 
-        document.getElementById('cancelBtn').addEventListener('click', () => {
-            clearForm();
-            toggleEducationForm();
-        });
+      document.getElementById("cancelBtn").addEventListener("click", () => {
+        clearForm();
+        toggleEducationForm();
+      });
 
-        document.getElementById('confirmBtn').addEventListener('click', () => {
-            const schoolName = document.getElementById('schoolName').value;
-            const major = document.getElementById('major').value;
-            const degreeElement = document.querySelector('input[name="degree"]:checked');
-            const degree = degreeElement ? degreeElement.value : '';
+      document.getElementById("confirmBtn").addEventListener("click", () => {
+        const schoolName = document.getElementById("schoolName").value;
+        const major = document.getElementById("major").value;
+        const degreeElement = document.querySelector(
+          'input[name="degree"]:checked'
+        );
+        const degree = degreeElement ? degreeElement.value : "";
 
-            if (schoolName && major && degree) {
-                if (editingIndex === -1) {
-                    educationList.push({
-                        schoolName: schoolName,
-                        major: major,
-                        degree: degree
-                    });
-                } else {
-                    educationList[editingIndex] = {
-                        schoolName: schoolName,
-                        major: major,
-                        degree: degree
-                    };
-                    editingIndex = -1;
-                }
-
-                updateEducationList();
-                clearForm();
-                toggleEducationForm();
-            } else {
-                alert('모든 필드를 입력해 주세요.');
-            }
-        });
-
-        function updateEducationList() {
-            const educationListDiv = document.getElementById('educationList');
-            educationListDiv.innerHTML = '';
-
-            educationList.forEach((item, index) => {
-                const educationItemDiv = document.createElement('div');
-                educationItemDiv.className = 'education-item';
-                
-                const educationText = document.createElement('span');
-                educationText.innerText = `${item.schoolName} ${item.major} (${item.degree})`;
-                educationItemDiv.appendChild(educationText);
-                
-                const editBtn = document.createElement('button');
-                editBtn.className = 'edit-btn btn btn-link';
-                editBtn.innerText = '편집';
-                editBtn.addEventListener('click', () => {
-                    editEducation(index);
-                });
-                educationItemDiv.appendChild(editBtn);
-
-                const deleteBtn = document.createElement('button');
-                deleteBtn.className = 'delete-btn btn btn-link';
-                deleteBtn.innerText = '삭제';
-                deleteBtn.addEventListener('click', () => {
-                    deleteEducation(index);
-                });
-                educationItemDiv.appendChild(deleteBtn);
-
-                educationListDiv.appendChild(educationItemDiv);
+        if (schoolName && major && degree) {
+          if (editingIndex === -1) {
+            educationList.push({
+              schoolName: schoolName,
+              major: major,
+              degree: degree,
             });
-        }
-
-        function editEducation(index) {
-            editingIndex = index;
-            const item = educationList[index];
-            document.getElementById('schoolName').value = item.schoolName;
-            document.getElementById('major').value = item.major;
-            const degrees = document.getElementsByName('degree');
-            degrees.forEach(degree => {
-                degree.checked = (degree.value === item.degree);
-            });
-            toggleEducationForm(true);
-        }
-
-        function deleteEducation(index) {
-            educationList.splice(index, 1);
-            updateEducationList();
-        }
-
-        function clearForm() {
-            document.getElementById('schoolName').value = '';
-            document.getElementById('major').value = '';
-            const degrees = document.getElementsByName('degree');
-            degrees.forEach(degree => {
-                degree.checked = false;
-            });
-        }
-
-        function toggleEducationForm(forceOpen = false) {
-            const educationForm = document.getElementById('educationForm');
-            if (forceOpen) {
-                educationForm.style.display = 'block';
-            } else {
-                educationForm.style.display = educationForm.style.display === 'block' ? 'none' : 'block';
-            }
-        }
-
-        // 프로필 수정 기능
-        const editProfileBtn = document.getElementById('editProfileBtn');
-        const profileButtons = document.getElementById('profileButtons');
-        const nameInput = document.getElementById('nameInput');
-        const emailInput = document.getElementById('emailInput');
-        const bioInput = document.getElementById('bioInput');
-        const nameText = document.getElementById('nameText');
-        const emailText = document.getElementById('emailText');
-        const bioText = document.getElementById('bioText');
-        const profileImage = document.getElementById('profileImage');
-        const imageURLInput = document.getElementById('imageURLInput');
-        const imageFileInput = document.getElementById('imageFileInput');
-        const imagePreview = document.getElementById('imagePreview');
-
-        editProfileBtn.addEventListener('click', () => {
-            nameInput.value = nameText.innerText;
-            emailInput.value = emailText.innerText;
-            bioInput.value = bioText.innerText;
-
-            nameInput.style.display = 'block';
-            emailInput.style.display = 'block';
-            bioInput.style.display = 'block';
-            imageURLInput.style.display = 'block';
-            imageFileInput.style.display = 'block';
-            imagePreview.style.display = 'block';
-
-            profileButtons.style.display = 'flex';
-            editProfileBtn.style.display = 'none';
-        });
-
-        document.getElementById('profileConfirmBtn').addEventListener('click', () => {
-            if (nameInput.value) {
-                nameText.innerText = nameInput.value;
-            }
-            if (emailInput.value) {
-                emailText.innerText = emailInput.value;
-            }
-            if (bioInput.value) {
-                bioText.innerText = bioInput.value;
-            }
-
-            // URL을 통한 이미지 변경
-            if (imageURLInput.value) {
-                profileImage.src = imageURLInput.value;
-            }
-
-            hideProfileEdit();
-        });
-
-        document.getElementById('profileCancelBtn').addEventListener('click', () => {
-            hideProfileEdit();
-        });
-
-        imageFileInput.addEventListener('change', (event) => {
-            const file = event.target.files[0];
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                profileImage.src = e.target.result;
-                imagePreview.src = e.target.result;
+          } else {
+            educationList[editingIndex] = {
+              schoolName: schoolName,
+              major: major,
+              degree: degree,
             };
-            if (file) {
-                reader.readAsDataURL(file);
-            }
+            editingIndex = -1;
+          }
+
+          updateEducationList();
+          clearForm();
+          toggleEducationForm();
+        } else {
+          alert("모든 필드를 입력해 주세요.");
+        }
+      });
+
+      function updateEducationList() {
+        const educationListDiv = document.getElementById("educationList");
+        educationListDiv.innerHTML = "";
+
+        educationList.forEach((item, index) => {
+          const educationItemDiv = document.createElement("div");
+          educationItemDiv.className = "education-item";
+
+          const educationText = document.createElement("span");
+          educationText.innerText = `${item.schoolName} ${item.major} (${item.degree})`;
+          educationItemDiv.appendChild(educationText);
+
+          const editBtn = document.createElement("button");
+          editBtn.className = "edit-btn btn btn-link";
+          editBtn.innerText = "편집";
+          editBtn.addEventListener("click", () => {
+            editEducation(index);
+          });
+          educationItemDiv.appendChild(editBtn);
+
+          const deleteBtn = document.createElement("button");
+          deleteBtn.className = "delete-btn btn btn-link";
+          deleteBtn.innerText = "삭제";
+          deleteBtn.addEventListener("click", () => {
+            deleteEducation(index);
+          });
+          educationItemDiv.appendChild(deleteBtn);
+
+          educationListDiv.appendChild(educationItemDiv);
+        });
+      }
+
+      function editEducation(index) {
+        editingIndex = index;
+        const item = educationList[index];
+        document.getElementById("schoolName").value = item.schoolName;
+        document.getElementById("major").value = item.major;
+        const degrees = document.getElementsByName("degree");
+        degrees.forEach((degree) => {
+          degree.checked = degree.value === item.degree;
+        });
+        toggleEducationForm(true);
+      }
+
+      function deleteEducation(index) {
+        educationList.splice(index, 1);
+        updateEducationList();
+      }
+
+      function clearForm() {
+        document.getElementById("schoolName").value = "";
+        document.getElementById("major").value = "";
+        const degrees = document.getElementsByName("degree");
+        degrees.forEach((degree) => {
+          degree.checked = false;
+        });
+      }
+
+      function toggleEducationForm(forceOpen = false) {
+        const educationForm = document.getElementById("educationForm");
+        if (forceOpen) {
+          educationForm.style.display = "block";
+        } else {
+          educationForm.style.display =
+            educationForm.style.display === "block" ? "none" : "block";
+        }
+      }
+
+      // 프로필 수정 기능
+      const editProfileBtn = document.getElementById("editProfileBtn");
+      const profileButtons = document.getElementById("profileButtons");
+      const nameInput = document.getElementById("nameInput");
+      const emailInput = document.getElementById("emailInput");
+      const bioInput = document.getElementById("bioInput");
+      const nameText = document.getElementById("nameText");
+      const emailText = document.getElementById("emailText");
+      const bioText = document.getElementById("bioText");
+      const profileImage = document.getElementById("profileImage");
+      const imageURLInput = document.getElementById("imageURLInput");
+      const imageFileInput = document.getElementById("imageFileInput");
+      const imagePreview = document.getElementById("imagePreview");
+
+      editProfileBtn.addEventListener("click", () => {
+        nameInput.value = nameText.innerText;
+        emailInput.value = emailText.innerText;
+        bioInput.value = bioText.innerText;
+
+        nameInput.style.display = "block";
+        emailInput.style.display = "block";
+        bioInput.style.display = "block";
+        imageURLInput.style.display = "block";
+        imageFileInput.style.display = "block";
+        imagePreview.style.display = "block";
+
+        profileButtons.style.display = "flex";
+        editProfileBtn.style.display = "none";
+      });
+
+      document
+        .getElementById("profileConfirmBtn")
+        .addEventListener("click", () => {
+          if (nameInput.value) {
+            nameText.innerText = nameInput.value;
+          }
+          if (emailInput.value) {
+            emailText.innerText = emailInput.value;
+          }
+          if (bioInput.value) {
+            bioText.innerText = bioInput.value;
+          }
+
+          // URL을 통한 이미지 변경
+          if (imageURLInput.value) {
+            profileImage.src = imageURLInput.value;
+          }
+
+          hideProfileEdit();
         });
 
-        function hideProfileEdit() {
-            nameInput.style.display = 'none';
-            emailInput.style.display = 'none';
-            bioInput.style.display = 'none';
-            imageURLInput.style.display = 'none';
-            imageFileInput.style.display = 'none';
-            imagePreview.style.display = 'none';
+      document
+        .getElementById("profileCancelBtn")
+        .addEventListener("click", () => {
+          hideProfileEdit();
+        });
 
-            profileButtons.style.display = 'none';
-            editProfileBtn.style.display = 'block';
+      imageFileInput.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          profileImage.src = e.target.result;
+          imagePreview.src = e.target.result;
+        };
+        if (file) {
+          reader.readAsDataURL(file);
         }
+      });
+
+      function hideProfileEdit() {
+        nameInput.style.display = "none";
+        emailInput.style.display = "none";
+        bioInput.style.display = "none";
+        imageURLInput.style.display = "none";
+        imageFileInput.style.display = "none";
+        imagePreview.style.display = "none";
+
+        profileButtons.style.display = "none";
+        editProfileBtn.style.display = "block";
+      }
     </script>
-</body>
+  </body>
 </html>
