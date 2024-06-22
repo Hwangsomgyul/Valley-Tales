@@ -112,3 +112,33 @@ function toggleEducationForm(forceOpen = false) {
         educationForm.style.display = educationForm.style.display === 'block' ? 'none' : 'block';
     }
 }
+
+// 학력 조회 함수
+const getEducations = async (userId) => {
+  try {
+    const response = await fetch(`/api/users/${userId}/educations`, {
+      method: 'GET',
+      credentials: 'include' // 세션 쿠키 포함
+    });
+    const result = await response.json();
+    console.log(result);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
+// 학력 추가 함수
+const addEducation = async (userId, educationData) => {
+  try {
+    const response = await fetch(`/api/users/${userId}/educations`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(educationData),
+      credentials: 'include' // 세션 쿠키 포함
+    });
+    const result = await response.json();
+    console.log(result);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};

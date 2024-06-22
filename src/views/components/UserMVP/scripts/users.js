@@ -59,3 +59,21 @@ fetch('components/navbar.html')
     .catch(error => {
         console.error('There was a problem with the fetch operation:', error);
     });
+
+const getUsers = async () => {
+  try {
+    const response = await fetch('/api/users', {
+      method: 'GET',
+      credentials: 'include' // 세션 쿠키 포함
+    });
+    const result = await response.json();
+    if (result.error) {
+      alert(result.error);
+    } else {
+      console.log(result.data);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+

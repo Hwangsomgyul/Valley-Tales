@@ -104,3 +104,34 @@ function toggleCertificateForm(forceOpen = false) {
         certificateForm.style.display = certificateForm.style.display === 'block' ? 'none' : 'block';
     }
 }
+
+// 자격증 조회 함수
+const getCertificates = async (userId) => {
+  try {
+    const response = await fetch(`/api/users/${userId}/certificates`, {
+      method: 'GET',
+      credentials: 'include' // 세션 쿠키 포함
+    });
+    const result = await response.json();
+    console.log(result);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
+// 자격증 추가 함수
+const addCertificate = async (userId, certificateData) => {
+  try {
+    const response = await fetch(`/api/users/${userId}/certificates`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(certificateData),
+      credentials: 'include' // 세션 쿠키 포함
+    });
+    const result = await response.json();
+    console.log(result);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+

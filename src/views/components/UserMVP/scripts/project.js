@@ -99,3 +99,34 @@ function toggleProjectForm(forceOpen = false) {
         projectForm.style.display = projectForm.style.display === 'block' ? 'none' : 'block';
     }
 }
+
+// 프로젝트 조회 함수
+const getProjects = async (userId) => {
+  try {
+    const response = await fetch(`/api/users/${userId}/projects`, {
+      method: 'GET',
+      credentials: 'include' // 세션 쿠키 포함
+    });
+    const result = await response.json();
+    console.log(result);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
+// 프로젝트 추가 함수
+const addProject = async (userId, projectData) => {
+  try {
+    const response = await fetch(`/api/users/${userId}/projects`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(projectData),
+      credentials: 'include' // 세션 쿠키 포함
+    });
+    const result = await response.json();
+    console.log(result);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+

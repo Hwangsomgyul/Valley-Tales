@@ -104,3 +104,33 @@ function toggleAwardForm(forceOpen = false) {
         awardForm.style.display = awardForm.style.display === 'block' ? 'none' : 'block';
     }
 }
+
+// 수상 조회 함수
+const getAwards = async (userId) => {
+  try {
+    const response = await fetch(`/api/users/${userId}/awards`, {
+      method: 'GET',
+      credentials: 'include' // 세션 쿠키 포함
+    });
+    const result = await response.json();
+    console.log(result);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
+// 수상 추가 함수
+const addAward = async (userId, awardData) => {
+  try {
+    const response = await fetch(`/api/users/${userId}/awards`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(awardData),
+      credentials: 'include' // 세션 쿠키 포함
+    });
+    const result = await response.json();
+    console.log(result);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
