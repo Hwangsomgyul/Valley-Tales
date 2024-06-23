@@ -1,9 +1,11 @@
 const { userModel, certificateModel } = require('../../db/models');
+const { userNotFound } = require('../utils');
 
 const getAllCertificates = async (req, res, next) => {
     try {
         const { userId } = req.params;
         const author = await userModel.findById(userId);
+        userNotFound(author);
         const allCertificates = await certificateModel.find({ author });
         const data = allCertificates.map(certificate => ({
             name: certificate.name,

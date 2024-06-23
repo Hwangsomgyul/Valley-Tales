@@ -1,5 +1,5 @@
 const { awardModel } = require('../../db/models');
-const checkAuthorization = require('../checkAuthorization');
+const { checkAuthorization, dataNotFound } = require('../utils');
 
 const deleteAward = async (req, res, next) => {
     const { awardId } = req.params;
@@ -7,11 +7,7 @@ const deleteAward = async (req, res, next) => {
         const foundAward = await awardModel.findOne({ awardId }).populate('author');
         checkAuthorization(foundAward.author.userId, req.user.userId);
         // 없으면 삭제 안되게 ㄱㄱ
-        if (!foundAward) {
-            const err = new Error('없는 데이터');
-            err.statusCode = 404;
-            throw err;
-        }
+        dataNotFound(foundAward);
         if (!!foundAward.deletedAt) {
             const err = new Error('이미 삭제된 데이터');
             err.statusCode = 409;

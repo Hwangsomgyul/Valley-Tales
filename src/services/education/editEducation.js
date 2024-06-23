@@ -1,16 +1,12 @@
 const { educationModel } = require('../../db/models');
-const checkAuthorization = require('../checkAuthorization');
+const { checkAuthorization, dataNotFound } = require('../utils');
 
 const editEducation = async (req, res, next) => {
     const { educationId } = req.params;
     try {
         const foundEducation = await educationModel.findOne({ educationId }).populate('author');
-        if (!foundEducation) {
-            const err = new Error('존재하지 않는 학력 정보입니다.');
-            err.statusCode = 404;
-            throw err;
-        }
         checkAuthorization(foundEducation.author.userId, req.user.userId);
+        dataNotFound(foundEducation);
         const { school, degree, major, startDate, endDate } = req.body;
         const updatedEducation = await educationModel.findOneAndUpdate({ educationId }, { school, degree, major, startDate, endDate }, {new: true});
         return res.json({

@@ -1,10 +1,13 @@
 const { userModel } = require('../../db/models');
 
+const { userNotFound } = require('../utils');
+
 const getUser = async (req, res, next) => {
     const { userId } = req.params;
     // try catch 구현해야 함
     try {
         const foundUser = await userModel.findById(userId);
+        userNotFound(foundUser);
         const canEdit = foundUser.userId === req.user.userId;
         const data = {
             name: foundUser.name,
