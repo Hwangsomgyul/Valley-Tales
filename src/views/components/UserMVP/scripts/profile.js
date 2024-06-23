@@ -65,12 +65,6 @@ imageFileInput.addEventListener('change', (event) => {
 });
 
 function hideProfileEdit() {
-    hideElement(nameInput);
-    hideElement(emailInput);
-    hideElement(bioInput);
-    hideElement(imageURLInput);
-    hideElement(imageFileInput);
-    hideElement(imagePreview);
-    hideElement(profileButtons);
+    hideElement([nameInput, emailInput, bioInput, imageURLInput, imageFileInput, imagePreview, profileButtons]);
     showElement(editProfileBtn);
 }
