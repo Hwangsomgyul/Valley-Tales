@@ -17,6 +17,11 @@ const addCertificate = require('./certificate/addCertificate');
 const editCertificate = require('./certificate/editCertificate');
 const deleteCertificate = require('./certificate/deleteCertificate');
 
+const getAllProjects = require('./project/getAllProjects');
+const addProject = require('./project/addProject');
+const editProject = require('./project/editProject');
+const deleteProject = require('./project/deleteProject');
+
 const userLogout = require('./auth/userLogout');
 const register = require('./auth/register');
 const deleteUser = require('./auth/deleteUser');
@@ -43,6 +48,11 @@ module.exports = {
     addCertificate,
     editCertificate,
     deleteCertificate,
+
+    getAllProjects,
+    addProject,
+    editProject,
+    deleteProject,
     
     userLogout,
     register,

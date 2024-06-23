@@ -1,13 +1,13 @@
 const { certificateModel } = require('../../db/models');
 const { checkAuthorization, dataNotFound } = require('../utils');
 
-const deletedCertificate = async (req, res, next) => {
+const deleteCertificate = async (req, res, next) => {
     const { certificateId } = req.params;
     try {
         const foundCertificate = await certificateModel.findOne({ certificateId }).populate('author');
+        dataNotFound(foundCertificate);
         checkAuthorization(foundCertificate.author.userId, req.user.userId);
         // 없으면 삭제 안되게 ㄱㄱ
-        dataNotFound(foundCertificate);
         if (!!foundCertificate.deletedAt) {
             const err = new Error('이미 삭제된 데이터');
             err.statusCode = 409;
@@ -24,4 +24,4 @@ const deletedCertificate = async (req, res, next) => {
     }
 }
 
-module.exports = deletedCertificate;
+module.exports = deleteCertificate;

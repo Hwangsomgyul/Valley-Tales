@@ -5,8 +5,8 @@ const editEducation = async (req, res, next) => {
     const { educationId } = req.params;
     try {
         const foundEducation = await educationModel.findOne({ educationId }).populate('author');
-        checkAuthorization(foundEducation.author.userId, req.user.userId);
         dataNotFound(foundEducation);
+        checkAuthorization(foundEducation.author.userId, req.user.userId);
         const { school, degree, major, startDate, endDate } = req.body;
         const updatedEducation = await educationModel.findOneAndUpdate({ educationId }, { school, degree, major, startDate, endDate }, {new: true});
         return res.json({

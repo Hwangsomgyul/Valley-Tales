@@ -5,9 +5,9 @@ const deleteEducation = async (req, res, next) => {
     const { educationId } = req.params;
     try {
         const foundEducation = await educationModel.findOne({ educationId }).populate('author');
-        checkAuthorization(foundEducation.author.userId, req.user.userId);
         // 없으면 삭제 안되게 ㄱㄱ
         dataNotFound(foundEducation);
+        checkAuthorization(foundEducation.author.userId, req.user.userId);
         if (!!foundEducation.deletedAt) {
             const err = new Error('이미 삭제된 데이터');
             err.statusCode = 409;

@@ -4,6 +4,7 @@ const usersRouter = require('./usersRouter');
 const educationsRouter = require('./educationsRouter');
 const awardsRouter = require('./awardsRouter');
 const certificatesRouter = require('./certificatesRouter');
+const projectsRouter = require('./projectsRouter');
 
 module.exports = {
     viewsRouter,
@@ -13,4 +14,5 @@ module.exports = {
     educationsRouter,
     awardsRouter,
     certificatesRouter,
+    projectsRouter,
 };

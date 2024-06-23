@@ -5,9 +5,9 @@ const deleteAward = async (req, res, next) => {
     const { awardId } = req.params;
     try {
         const foundAward = await awardModel.findOne({ awardId }).populate('author');
-        checkAuthorization(foundAward.author.userId, req.user.userId);
         // 없으면 삭제 안되게 ㄱㄱ
         dataNotFound(foundAward);
+        checkAuthorization(foundAward.author.userId, req.user.userId);
         if (!!foundAward.deletedAt) {
             const err = new Error('이미 삭제된 데이터');
             err.statusCode = 409;

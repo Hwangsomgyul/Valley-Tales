@@ -5,8 +5,8 @@ const editAward = async (req, res, next) => {
     const { awardId } = req.params;
     try {
         const foundAward = await awardModel.findOne({ awardId }).populate('author');
-        checkAuthorization(foundAward.author.userId, req.user.userId);
         dataNotFound(foundAward);
+        checkAuthorization(foundAward.author.userId, req.user.userId);
         const { title, organization, date } = req.body;
         const updatedAward = await awardModel.findOneAndUpdate({ awardId }, { title, organization, date }, {new: true});
         return res.json({
