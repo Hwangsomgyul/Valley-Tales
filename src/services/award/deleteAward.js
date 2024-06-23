@@ -12,7 +12,7 @@ const deleteAward = async (req, res, next) => {
             err.statusCode = 404;
             throw err;
         }
-        if (!!foundAward.deleteAt) {
+        if (!!foundAward.deletedAt) {
             const err = new Error('이미 삭제된 데이터');
             err.statusCode = 409;
             throw err;

@@ -12,6 +12,11 @@ const addAward = require('./award/addAward');
 const editAward = require('./award/editAward');
 const deleteAward = require('./award/deleteAward');
 
+const getAllCertificates = require('./certificate/getAllCertificates');
+const addCertificate = require('./certificate/addCertificate');
+const editCertificate = require('./certificate/editCertificate');
+const deleteCertificate = require('./certificate/deleteCertificate');
+
 const userLogout = require('./auth/userLogout');
 const register = require('./auth/register');
 const deleteUser = require('./auth/deleteUser');
@@ -33,6 +38,11 @@ module.exports = {
     addAward,
     editAward,
     deleteAward,
+
+    getAllCertificates,
+    addCertificate,
+    editCertificate,
+    deleteCertificate,
     
     userLogout,
     register,

@@ -12,7 +12,7 @@ const deleteEducation = async (req, res, next) => {
             err.statusCode = 404;
             throw err;
         }
-        if (!!foundEducataion.deleteAt) {
+        if (!!foundEducation.deletedAt) {
             const err = new Error('이미 삭제된 데이터');
             err.statusCode = 409;
             throw err;

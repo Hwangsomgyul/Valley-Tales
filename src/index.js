@@ -13,6 +13,7 @@ const {
   usersRouter,
   educationsRouter,
   awardsRouter,
+  certificatesRouter,
 } = require('./routers');
 
 const { mongodbUrl, port, secretKey } = require("./config");
@@ -64,6 +65,7 @@ app.use(privateViewsRouter);
 app.use("/api/users", usersRouter);
 app.use('/api/educations', educationsRouter);
 app.use('/api/awards', awardsRouter);
+app.use('/api/certificates', certificatesRouter);
 
 // 에러 처리 핸들러 맨 밑으로 ㄱㄱ
 app.use((err, req, res, next) => {
