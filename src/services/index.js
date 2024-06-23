@@ -1,7 +1,6 @@
 const getAllUsers = require('./user/getAllUsers');
 const getUser = require('./user/getUser');
 const editUser = require('./user/editUser');
-const deleteUser = require('./user/deleteUser');
 
 const getAllEducations = require('./education/getAllEducations');
 const addEducation = require('./education/addEducation');
@@ -13,24 +12,32 @@ const addAward = require('./award/addAward');
 const editAward = require('./award/editAward');
 const deleteAward = require('./award/deleteAward');
 
-const register = require('./register');
+const userLogout = require('./auth/userLogout');
+const register = require('./auth/register');
+const deleteUser = require('./auth/deleteUser');
+
 const serveStatic = require('./serveStatic');
-const userLogout = require('./userLogout');
+const checkAuthorization = require('./checkAuthorization');
 
 module.exports = {
     getAllUsers,
     getUser,
     editUser,
+    
     getAllEducations,
     addEducation,
     editEducation,
     deleteEducation,
+    
     getAllAwards,
     addAward,
     editAward,
     deleteAward,
-    register,
-    serveStatic,
-    deleteUser,
+    
     userLogout,
+    register,
+    deleteUser,
+
+    serveStatic,
+    checkAuthorization,
 };

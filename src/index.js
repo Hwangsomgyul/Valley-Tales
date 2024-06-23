@@ -6,9 +6,14 @@ const cookieParser = require("cookie-parser");
 const MongoStore = require("connect-mongo");
 const passport = require("passport");
 
-const { viewsRouter, privateViewsRouter } = require("./routers/viewsRouters");
-const authRouter = require("./routers/authRouter");
-const usersRouter = require("./routers/usersRouter");
+const {
+  viewsRouter,
+  privateViewsRouter,
+  authRouter,
+  usersRouter,
+  educationsRouter,
+  awardsRouter,
+} = require('./routers');
 
 const { mongodbUrl, port, secretKey } = require("./config");
 
@@ -57,6 +62,8 @@ app.use(viewsRouter);
 // 이 뒤로는 무조건 로그인이 필요해집니다.
 app.use(privateViewsRouter);
 app.use("/api/users", usersRouter);
+app.use('/api/educations', educationsRouter);
+app.use('/api/awards', awardsRouter);
 
 // 에러 처리 핸들러 맨 밑으로 ㄱㄱ
 app.use((err, req, res, next) => {
