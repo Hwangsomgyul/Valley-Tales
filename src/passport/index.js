@@ -1,7 +1,7 @@
 const passport = require('passport');
 
 const local = require('./strategies/localStrategy');
-const { userModel } = require('../db/models');  // 아직 미작성.
+const { userModel } = require('../db/models');
 
 module.exports = () => {
     passport.use(local);

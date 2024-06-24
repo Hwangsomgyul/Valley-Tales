@@ -18,6 +18,7 @@ const {
 } = require('./routers');
 
 const { mongodbUrl, port, secretKey } = require("./config");
+const { NotFoundError } = require('./utils/customError');
 
 const app = express();
 
@@ -69,13 +70,17 @@ app.use('/api/awards', awardsRouter);
 app.use('/api/certificates', certificatesRouter);
 app.use('/api/projects', projectsRouter);
 
+app.use((req, res, next) => {
+  return next(new NotFoundError('페이지를 찾을 수 없습니다.'));
+});
+
 // 에러 처리 핸들러 맨 밑으로 ㄱㄱ
 app.use((err, req, res, next) => {
-  if (!err.statusCode) {
+  if (!err.statusCode || err.statusCode >= 500) {
     console.error(err);
-    return res.status(err.statusCode || 500).json({ error: "무언가 잘못됨." });
+    return res.status(500).json({ error: "무언가 잘못됨." });
   }
-  res.status(err.statusCode || 400).json({ error: err.message });
+  res.status(err.statusCode).json({ error: err.message });
 });
 
 app.listen(port, () => {

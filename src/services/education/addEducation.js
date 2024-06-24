@@ -12,10 +12,7 @@ const addEducation = async (req, res, next) => {
         endDate,
     });
     if (!addedEducation) {
-        const err = new Error('추가가 왜 안 되는 거지');
-        err.statusCode = 500;
-        next(err);
-        return;
+        throw new Error('추가에 실패하였습니다.');
     }
     return res.json({
         school: addedEducation.school,

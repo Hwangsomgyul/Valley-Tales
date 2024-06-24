@@ -12,9 +12,7 @@ const addProject = async (req, res, next) => {
             endDate,
         });
         if (!addedProject) {
-            const err = new Error('추가가 왜 안 되는 거지');
-            err.statusCode = 500;
-            throw err;
+            throw new Error('추가에 실패하였습니다.');
         }
         return res.json({
             title: addedProject.title,
