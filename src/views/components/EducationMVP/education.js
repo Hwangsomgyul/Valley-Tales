@@ -5,6 +5,8 @@ const addEducationBtn = document.getElementById('addEducationBtn');
 const educationForm = document.getElementById('educationForm');
 const schoolNameInput = document.getElementById('schoolName');
 const majorInput = document.getElementById('major');
+const startDateInput = document.getElementById('startDate');
+const endDateInput = document.getElementById('endDate');
 const educationList = [];
 let educationEditingIndex = -1;
 
@@ -19,7 +21,8 @@ document.getElementById('cancelBtn').addEventListener('click', () => {
     toggleEducationForm();
 });
 
-document.getElementById('confirmBtn').addEventListener('click', () => {
+document.getElementById('confirmBtn').addEventListener('click', (e) => {
+    e.preventDefault();
     const degreeElement = document.querySelector('input[name="degree"]:checked');
     const degree = degreeElement ? degreeElement.value : '';
 
@@ -77,6 +80,7 @@ function updateEducationList() {
 
         educationListDiv.appendChild(educationItemDiv);
     });
+	    awardListDiv.appendChild(fragment);
 }
 
 function editEducation(index) {
@@ -87,6 +91,8 @@ function editEducation(index) {
     const degrees = document.getElementsByName('degree');
     degrees.forEach(degree => {
         degree.checked = (degree.value === item.degree);
+    startDateInput.value = item.startDate;
+    endDateInput.value = item.endDate;
     });
     toggleEducationForm(true);
 }
@@ -103,6 +109,8 @@ function clearEducationForm() {
     degrees.forEach(degree => {
         degree.checked = false;
     });
+    startDateInput.value='';
+    endDateInput.value='';
 }
 
 function toggleEducationForm(forceOpen = false) {
@@ -138,6 +146,35 @@ const addEducation = async (userId, educationData) => {
     });
     const result = await response.json();
     console.log(result);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
+// 학력 수정 함수
+const updateEducation = async (id, educationData) => {
+  try {
+    const response = await fetch(`/api/users/educations/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(educationData),
+      credentials: 'include' // 세션 쿠키 포함
+    });
+    const result = await response.json();
+    educationList[id] = result;
+    console.log(result);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
+// 학력 삭제 함수
+const removeEducation = async (id) => {
+  try {
+    await fetch(`/api/users/educations/${id}`, {
+      method: 'DELETE',
+      credentials: 'include' // 세션 쿠키 포함
+    });
   } catch (error) {
     console.error('Error:', error);
   }

@@ -86,9 +86,21 @@ function editCertificate(index) {
     toggleCertificateForm(true);
 }
 
-function deleteCertificate(index) {
-    certificateList.splice(index, 1);
-    updateCertificateList();
+// 자격증 삭제 함수
+async function deleteCertificate(id) {
+    try {
+        await fetch(`/api/users/certificates/${id}`, {
+            method: 'DELETE',
+            credentials: 'include' // 세션 쿠키 포함
+        });
+        const index = certificateList.findIndex(item => item.id === id);
+        if (index !== -1) {
+            certificateList.splice(index, 1);
+            updateCertificateList();
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
 
 function clearCertificateForm() {
@@ -135,3 +147,22 @@ const addCertificate = async (userId, certificateData) => {
   }
 };
 
+// 자격증 수정 함수
+const updateCertificate = async (id, certificateData) => {
+    try {
+        const response = await fetch(`/api/users/certificates/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(certificateData),
+            credentials: 'include' // 세션 쿠키 포함
+        });
+        const result = await response.json();
+        const index = certificateList.findIndex(item => item.id === id);
+        if (index !== -1) {
+            certificateList[index] = result;
+        }
+        updateCertificateList();
+    } catch (error) {
+        console.error('Error:', error);
+    }
+};

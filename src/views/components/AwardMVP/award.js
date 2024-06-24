@@ -86,9 +86,21 @@ function editAward(index) {
     toggleAwardForm(true);
 }
 
-function deleteAward(index) {
-    awardList.splice(index, 1);
-    updateAwardList();
+// 수상 삭제 함수
+async function deleteAward(id) {
+    try {
+        await fetch(`/api/users/awards/${id}`, {
+            method: 'DELETE',
+            credentials: 'include' // 세션 쿠키 포함
+        });
+        const index = awardList.findIndex(item => item.id === id);
+        if (index !== -1) {
+            awardList.splice(index, 1);
+            updateAwardList();
+        }
+    } catch (error) {
+        console.error('Error:', error);
+    }
 }
 
 function clearAwardForm() {
@@ -133,4 +145,24 @@ const addAward = async (userId, awardData) => {
   } catch (error) {
     console.error('Error:', error);
   }
+};
+
+// 수상 수정 함수
+const updateAward = async (id, awardData) => {
+    try {
+        const response = await fetch(`/api/users/awards/${id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(awardData),
+            credentials: 'include' // 세션 쿠키 포함
+        });
+        const result = await response.json();
+        const index = awardList.findIndex(item => item.id === id);
+        if (index !== -1) {
+            awardList[index] = result;
+        }
+        updateAwardList();
+    } catch (error) {
+        console.error('Error:', error);
+    }
 };
