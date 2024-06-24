@@ -114,6 +114,7 @@ h2 {
 
 .login-margin {
   margin-top: 1rem;
+  margin-left: 100px;
 }
 
 .login-form {
@@ -124,4 +125,20 @@ h2 {
 .font-checkmsg {
   font-size: 13px;
   color: gray;
+  padding-left: 100px;
+}
+
+.join-body {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.label-width {
+  width: 200px;
+}
+
+.center-btn {
+  width: 736px;
+  margin-top: 2rem;
 }
