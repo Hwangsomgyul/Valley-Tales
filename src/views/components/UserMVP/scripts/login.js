@@ -12,8 +12,10 @@ const [
 function onLoginSubmit(event) {
   event.preventDefault();
   console.log("로그인 제출");
+  console.log(loginInputPassword.value);
   const loginEmail = loginInputEmail.value + loginInputDomain.value;
   const loginPassword = loginInputPassword.value;
+
   if (loginInputEmail.value === "" || loginInputDomain.value === "") {
     return alert("이메일을 입력해주세요!");
   } else if (loginPassword === "") {
@@ -32,7 +34,6 @@ function fetchPostLogin(loginEmail, loginPassword) {
     headers: {
       "Content-Type": "application/json",
     },
-    credentials: "include",
     body: JSON.stringify({
       email: loginEmail,
       password: loginPassword,
@@ -40,7 +41,9 @@ function fetchPostLogin(loginEmail, loginPassword) {
   }).then((res) => {
     console.log(res);
     if (res.redirected) {
-      return (window.location.href = `/api/auth/users/${req.user.userId}`);
+      console.log("유저페이지로 이동");
+      window.location.href = `/`;
+      return;
     } else if (res.status === 400) {
       return alert(`error : 이메일 또는 비밀번호를 확인해 주세요!`);
     }

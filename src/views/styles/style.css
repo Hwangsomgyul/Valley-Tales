@@ -108,37 +108,3 @@ h2 {
   border-color: #d1aaff;
   box-shadow: 0 0 0 0.2rem rgba(115, 87, 225, 0.5);
 }
-.input-login {
-  width: 150px;
-}
-
-.login-margin {
-  margin-top: 1rem;
-  margin-left: 100px;
-}
-
-.login-form {
-  width: 800px;
-  padding: 2rem;
-}
-
-.font-checkmsg {
-  font-size: 13px;
-  color: gray;
-  padding-left: 100px;
-}
-
-.join-body {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-}
-
-.label-width {
-  width: 200px;
-}
-
-.center-btn {
-  width: 736px;
-  margin-top: 2rem;
-}
