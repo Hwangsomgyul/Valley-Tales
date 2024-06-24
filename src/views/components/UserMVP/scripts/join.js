@@ -51,5 +51,4 @@ function checkPassword() {
 }
 
 joinForm.addEventListener("submit", onJoinSubmit);
-joinInputPass2,
-.addEventListener("change", checkPassword);
+joinInputPass2.addEventListener("change", checkPassword);
