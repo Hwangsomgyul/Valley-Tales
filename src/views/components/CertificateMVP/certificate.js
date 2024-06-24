@@ -9,6 +9,11 @@ const certificateDateInput = document.getElementById('certificateDate');
 const certificateList = [];
 let certificateEditingIndex = -1;
 
+const initializeCertificateForm = () => {
+  clearCertificateForm();
+  toggleCertificateForm();
+}
+
 addCertificateBtn.addEventListener('click', () => {
     certificateEditingIndex = -1;
     clearCertificateForm();

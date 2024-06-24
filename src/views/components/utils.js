@@ -2,9 +2,19 @@
 
 // 공통 함수
 export function showElement(element) {
-    element.style.display = 'block';
+    // 요소가 배열일 경우 각각 처리
+    if (Array.isArray(element)) {
+        element.forEach(el => el.style.display = 'block');
+    } else {
+        element.style.display = 'block';
+    }
 }
 
 export function hideElement(element) {
-    element.style.display = 'none';
+    // 요소가 배열일 경우 각각 처리
+    if (Array.isArray(element)) {
+        element.forEach(el => el.style.display = 'none');
+    } else {
+        element.style.display = 'none';
+    }
 }

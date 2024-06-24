@@ -1,13 +1,13 @@
 // award.js
 import { showElement, hideElement } from './utils.js';
 
-const addAwardBtn = document.getElementById('addAwardBtn');
-const awardForm = document.getElementById('awardForm');
-const awardHistoryInput = document.getElementById('awardHistory');
-const organizationInput = document.getElementById('organization');
-const awardDateInput = document.getElementById('awardDate');
+const [addAwardBtn, awardForm, awardHistoryInput, organizationInput, awardDateInput] = document.querySelectorAll("[id^=award-form]");
 const awardList = [];
 let awardEditingIndex = -1;
+const initializeAwardForm = () => {
+  clearAwardForm();
+  toggleAwardForm();
+}
 
 addAwardBtn.addEventListener('click', () => {
     awardEditingIndex = -1;
