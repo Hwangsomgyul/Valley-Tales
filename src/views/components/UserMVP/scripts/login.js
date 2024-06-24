@@ -15,7 +15,7 @@ function onLoginSubmit(event) {
   event.preventDefault();
   console.log("로그인 제출");
   console.log(loginInputPassword.value);
-  const loginEmail = loginInputEmail.value + loginInputDomain.value;
+  const loginEmail = loginInputEmail.value + "@" + loginInputDomain.value;
   const loginPassword = loginInputPassword.value;
 
   if (loginInputEmail.value === "" || loginInputDomain.value === "") {

@@ -32,7 +32,7 @@ function onJoinSubmit(event) {
     return alert("이름을 입력해주세요!");
   }
 
-  const joinEmail = joinInputEmail.value + joinInputDomain.value;
+  const joinEmail = joinInputEmail.value + "@" + joinInputDomain.value;
   const joinPassword = joinInputPass1.value;
   const joinName = joinInputName.value;
   const userInfo = { joinEmail, joinPassword, joinName };
@@ -57,6 +57,31 @@ function checkPassword() {
     passwordMessage.style.color = "green";
   }
   return;
+}
+
+function fetchPostJoin() {
+  fetch("/api/auth/join", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: joinEmail,
+      password: joinPassword,
+      name: joinName,
+    }),
+  }).then((res) => {
+    console.log(res);
+    if (res.redirected) {
+      console.log("로그인페이지로 이동");
+      alert(`회원가입에 성공했습니다!`);
+      window.location.href = `/`;
+      return;
+    } else {
+      alert(`error : 회원가입에 실패했습니다.`);
+      return;
+    }
+  });
 }
 
 joinForm.addEventListener("submit", onJoinSubmit);
