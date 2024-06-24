@@ -1,3 +1,5 @@
+//import
+
 const joinButton = document.getElementById("join-btn-at-login");
 
 const [
@@ -52,28 +54,3 @@ function fetchPostLogin(loginEmail, loginPassword) {
 }
 
 loginForm.addEventListener("submit", onLoginSubmit);
-
-// text 정보만 요청 baseApi
-// const BASE_API_URL = "/api";
-// const nonBodyMethods = ["GET", "DELETE"];
-// const baseApi = async ({ url = "", method = "GET", data, headers = {} }) => {
-//   // const userId = localStorage.getItem("userId");
-//   const apiUrl = `${BASE_API_URL}/${url}`;
-//   try {
-//     if (nonBodyMethods.includes(method)) {
-//       // GET, DELETE 요청이면 바디 없이 fetch
-//       return await fetch(apiUrl, { method, headers });
-//     } else {
-//       // POST, PUT 요청이면 바디 있는 fetch
-//       return await fetch(apiUrl, {
-//         method,
-//         headers,
-//         credentials: "include"
-//         body: JSON.stringify(data),
-//       });
-//     }
-//   } catch (err) {
-//     console.log("error");
-//     console.log(res.status);
-//   }
-// };
