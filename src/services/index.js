@@ -25,6 +25,8 @@ const deleteProject = require('./project/deleteProject');
 const userLogout = require('./auth/userLogout');
 const register = require('./auth/register');
 const deleteUser = require('./auth/deleteUser');
+const changePassword = require('./auth/changePassword');
+const findPassword = require('./auth/findPassword');
 
 const serveStatic = require('./serveStatic');
 
@@ -56,6 +58,8 @@ module.exports = {
     userLogout,
     register,
     deleteUser,
+    changePassword,
+    findPassword,
 
     serveStatic,
 };

@@ -6,6 +6,8 @@ const {
     validateAward,
     validateCertificate,
     validateProject,
+    validateEmail,
+    validatePassword,
 } = require('./validator');
 
 module.exports = {
@@ -17,4 +19,6 @@ module.exports = {
     validateAward,
     validateCertificate,
     validateProject,
+    validateEmail,
+    validatePassword,
 };
