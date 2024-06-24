@@ -17,137 +17,6 @@
     <!-- External CSS -->
     <link rel="stylesheet" href="styles/style.css" />
     <script defer src="./components/UserMVP/scripts/join.js"></script>
-
-    <!-- 통일되지 않은 스타일 태그 주석 처리 -->
-    <!-- <style>
-      /* 태그 스타일 */
-      body {
-        margin: 0px;
-        width: 100%;
-        height: 100%;
-        font-family: "Pretendard", system-ui, -apple-system, BlinkMacSystemFont,
-          "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
-          "Helvetica Neue", sans-serif;
-        background-color: #f8f9fa;
-      }
-      header {
-        margin: 0px;
-      }
-      nav {
-        margin: 0px;
-      }
-      li {
-        margin: 0px;
-        list-style: none;
-      }
-      ul {
-        margin: 0px;
-        padding: 0px;
-        list-style-type: none;
-      }
-      p {
-        margin: 0px;
-      }
-      a {
-        margin: 0px;
-      }
-      h3 {
-        margin: 0px;
-      }
-      main {
-        margin: 0px;
-      }
-      form {
-        margin: 0px;
-      }
-      div {
-        margin: 0px;
-      }
-      input {
-        margin: 0px;
-        width: 100%;
-      }
-      button {
-        margin: 0px;
-      }
-
-      /* 간격 및 너비 */
-      .width-60 {
-        width: 60%;
-      }
-      .gap-1rem {
-        gap: 1rem;
-      }
-      .gap-2rem {
-        gap: 2rem;
-      }
-
-      /* flex 스타일 */
-      .flex-column {
-        display: flex;
-        flex-direction: column;
-      }
-      .flex-center {
-        display: flex;
-        justify-content: center;
-      }
-      .flex {
-        display: flex;
-      }
-      .flex-between {
-        justify-content: space-between;
-      }
-      .flex-row {
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-      }
-      .center {
-        justify-content: center;
-      }
-
-      /* 글꼴 스타일 */
-      .form-size {
-        width: 300px;
-      }
-      .font-bottom-5px {
-        padding: 0 0 2px 0;
-      }
-      .font-checkmsg {
-        font-size: 13px;
-        color: gray;
-      }
-      .font-menutitle {
-        font-size: 20px;
-        font-weight: 800;
-        color: #7357e1;
-      }
-
-      /* 도형 스타일 */
-      .button-purple {
-        border-radius: 30px;
-        border: 0px;
-        background-color: #7357e1;
-        width: 100px;
-        height: 1.5rem;
-        color: whitesmoke;
-      }
-
-      .background-white-shadow {
-        background-color: white;
-        padding: 2rem;
-        border-radius: 30px;
-      }
-
-      .input-box {
-        width: 100%;
-        height: 1.5rem;
-        border-color: rgb(227, 227, 227);
-        border-radius: 30px;
-        border-style: solid;
-        border-width: 1px;
-      }
-    </style> -->
   </head>
   <div class="text-container" id="navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -167,42 +36,75 @@
   </div>
 
   <body>
-    <main class="flex-center">
-      <div class="flex-column gap-2rem">
-        <p class="">회원가입</p>
-        <form class="card-body" id="join-form">
-          <!-- form 내부를 div 태그로 묶어 gap으로 간격  -->
-          <div>
-            <p class="font-bottom-5px">이메일 주소</p>
-            <input type="email" name="email" class="input-box" />
-            <!-- email 선택지
-               @ <div>
-            <select>
-              <option>gmail.com</option>
-              <option>daum.net</option>
-              <option>naver.com</option>
-              <option></option>  //직접입력 칸
-            </select> 
-          </div>-->
-            <p id="email-check-message" class="font-checkmsg"></p>
-          </div>
-          <div>
-            <p class="font-bottom-5px">비밀번호</p>
-            <input type="password" name="password_1st" class="input-box" />
-          </div>
-          <div>
-            <p class="font-bottom-5px">비밀번호 재확인</p>
-            <input type="password" name="password_2nd" class="input-box" />
-            <p id="pw-check-message" class="font-checkmsg"></p>
-          </div>
-          <div>
-            <p class="font-bottom-5px">이름</p>
-            <input type="text" name="user_name" class="input-box" />
-          </div>
+    <div class="container card-body">
+      <h3 class="page-title">Join</h3>
+      <form class="login-form card-body card-nohover" id="join-form">
+        <div>
+          <label for="email">Email address</label>
+          <input
+            type="text"
+            id="join-email"
+            name="email"
+            placeholder="이메일"
+            class="input-login"
+          />
+          <datalist id="email-option">
+            <option value="@gmail.com" />
+            <option value="@naver.com" />
+            <option value="@kakao.com" />
+            <option value="@daum.net" />
+            <option value="@hanmail.net" />
+            <option value="@nate.com" />
+          </datalist>
+          <input
+            type="text"
+            id="join-domain"
+            placeholder="직접 입력"
+            class="input-login"
+            list="email-option"
+          />
+        </div>
+        <div class="login-margin">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="join-password1"
+            name="password"
+            placeholder="비밀번호"
+            class="input-login"
+          />
+          <p class="font-checkmsg" style="padding-left: 120px">
+            8자 이상, 영문 소문자/숫자 혼합 필수
+          </p>
 
-          <button type="submit" class="button-purple">회원가입</button>
-        </form>
-      </div>
-    </main>
+          <label for="password">Password check</label>
+          <input
+            type="password"
+            id="join-password2"
+            name="password"
+            placeholder="비밀번호 확인"
+            class="input-login"
+          />
+          <p id="pw-check-message" class="font-checkmsg"></p>
+        </div>
+
+        <div class="login-margin">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            id="join-name"
+            name="name"
+            placeholder="이름"
+            class="input-login"
+          />
+        </div>
+
+        <div class="login-margin">
+          <button type="submit" class="btn btn-primary" id="join-btn">
+            회원가입
+          </button>
+        </div>
+      </form>
+    </div>
   </body>
 </html>

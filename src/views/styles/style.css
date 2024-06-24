@@ -1,96 +1,127 @@
 body {
-    background-color: #f8f9fa;
-    font-family: 'Pretendard', sans-serif;
+  background-color: #f8f9fa;
+  font-family: "Pretendard", sans-serif;
 }
 
 .navbar {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .navbar-brand {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #7357e1;
-    margin-left: 20px;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #7357e1;
+  margin-left: 20px;
 }
 
 .nav-link {
-    color: #343a40;
-    transition: color 0.2s;
+  color: #343a40;
+  transition: color 0.2s;
 }
 
 .nav-link:hover {
-    color: #9272FF;
+  color: #9272ff;
 }
 
 .nav-link:active {
-    color: #B28DFF;
+  color: #b28dff;
 }
 
 .nav-link:focus {
-    color: #D1AAFF;
+  color: #d1aaff;
 }
 
 h2 {
-    color: #343a40;
-    margin-bottom: 40px;
+  color: #343a40;
+  margin-bottom: 40px;
+}
+
+.page-title {
+  font-weight: 700;
+  color: #7357e1;
+  margin-top: 50px;
 }
 
 .card {
-    margin: 15px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
+  margin: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-nohover {
+  margin: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  background-color: white;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 .card-img-top {
-    width: 100%;
-    height: auto;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .card-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .card-title {
-    margin: 10px 0;
-    font-size: 1.25rem;
-    color: #343a40;
+  margin: 10px 0;
+  font-size: 1.25rem;
+  color: #343a40;
 }
 
 .card-text {
-    margin-bottom: 10px;
-    color: #6c757d;
+  margin-bottom: 10px;
+  color: #6c757d;
 }
 
 .btn-primary {
-    background-color: #7357e1;
-    border-color: #7357e1;
-    transition: background-color 0.2s, border-color 0.2s;
+  background-color: #7357e1;
+  border-color: #7357e1;
+  transition: background-color 0.2s, border-color 0.2s;
 }
 
 .btn-primary:hover {
-    background-color: #9272FF;
-    border-color: #9272FF;
+  background-color: #9272ff;
+  border-color: #9272ff;
 }
 
 .btn-primary:active {
-    background-color: #B28DFF;
-    border-color: #B28DFF;
+  background-color: #b28dff;
+  border-color: #b28dff;
 }
 
 .btn-primary:focus {
-    background-color: #D1AAFF;
-    border-color: #D1AAFF;
-    box-shadow: 0 0 0 0.2rem rgba(115, 87, 225, 0.5);
+  background-color: #d1aaff;
+  border-color: #d1aaff;
+  box-shadow: 0 0 0 0.2rem rgba(115, 87, 225, 0.5);
+}
+.input-login {
+  width: 150px;
+}
+
+.login-margin {
+  margin-top: 1rem;
+}
+
+.login-form {
+  width: 800px;
+  padding: 2rem;
+}
+
+.font-checkmsg {
+  font-size: 13px;
+  color: gray;
 }

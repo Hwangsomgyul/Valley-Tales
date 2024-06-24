@@ -1,42 +1,55 @@
-users = [];
-
+const userInfo = [];
 const joinForm = document.getElementById("join-form");
-const passwordMessage = "";
+let passwordMessage = document.getElementById("pw-check-message");
+const [
+  joinInputEmail,
+  joinInputDomain,
+  joinInputPass1,
+  joinInputPass2,
+  joinInputName,
+  joinButton,
+] = document.querySelectorAll("[id^=join-]");
 
 // 폼 제출 시 api 요청
 function onJoinSubmit(event) {
   event.preventDefault();
   console.log("회원가입 제출");
 
-  // input 변수 할당
-  const emailInput = document.getElementsByName("email")[0].value;
-  const password1 = document.getElementsByName("password_1st")[0].value;
-  const password2 = document.getElementsByName("password_2nd")[0].value;
-  const joinNameInput = document.getElementsByName("user_name")[0].value;
-
   // 빈칸 경고, 비밀번호 일치 확인
-  if (emailInput === "") {
+  if (joinInputEmail.value === "" || joinInputDomain.value === "") {
     return alert("이메일을 입력해주세요!");
-  } else if (password1 === "") {
+  } else if (joinInputPass1.value === "") {
     return alert("비밀번호를 입력해주세요!");
-  } else if (passwordMessage !== "") {
-    return alert("비밀번호가 일치하지 않습니다!");
+  } else if (joinInputPass2.value === "") {
+    return alert("비밀번호 확인을 입력해주세요!");
+  } else if (passwordMessage) {
+    return alert("비밀번호를 다시 확인해주세요!");
   }
 
-  console.log(emailInput);
+  const joinEmail = joinInputEmail.value + joinInputDomain.value;
+  const joinPassword = joinInputPass1.value;
+  const joinName = joinInputName.value;
+  userInfo = { joinEmail, joinPassword, joinName };
+
+  console.log(joinEmail);
   console.log(password1);
   console.log(password2);
-  console.log(joinNameInput);
+  console.log(joinName);
+  console.log(userInfo);
 
   // fetch post API 요청
 }
 
-// change 이벤트로 password1 password2 비교하는 함수 실행
-// if (password1 !== password2) {
-//   passwordMessage = "비밀번호가 일치하지 않습니다.";
-//   // innerText 로 화면에 불일치문구 보이도록 할 예정
-// } else if (password1 === password2) {
-//   passwordMessage = "";
-// }
+// 비밀번호 확인 칸 change event
+function checkPassword() {
+  if (joinInputPass1.value === joinInputPass2.value) {
+    passwordMessage.innerText = "비밀번호가 일치합니다!";
+  } else {
+    passwordMessage.innerText = "";
+  }
+  return;
+}
 
 joinForm.addEventListener("submit", onJoinSubmit);
+joinInputPass2,
+.addEventListener("change", checkPassword);
