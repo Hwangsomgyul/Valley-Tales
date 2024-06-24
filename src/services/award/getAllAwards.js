@@ -1,5 +1,5 @@
 const { userModel, awardModel } = require('../../db/models');
-const { userNotFound } = require('../utils');
+const { userNotFound } = require('../../utils');
 
 const getAllAwards = async (req, res, next) => {
     try {

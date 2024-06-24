@@ -1,5 +1,5 @@
 const { userModel, projectModel } = require('../../db/models');
-const { userNotFound } = require('../utils');
+const { userNotFound } = require('../../utils');
 
 const getAllProjects = async (req, res, next) => {
     try {

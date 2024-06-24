@@ -1,6 +1,6 @@
 const { userModel } = require('../../db/models');
 
-const { userNotFound } = require('../utils');
+const { userNotFound } = require('../../utils');
 
 const getUser = async (req, res, next) => {
     const { userId } = req.params;

@@ -1,5 +1,5 @@
 const { projectModel } = require('../../db/models');
-const { checkAuthorization, dataNotFound } = require('../utils');
+const { checkAuthorization, dataNotFound } = require('../../utils');
 
 const editProject = async (req, res, next) => {
     const { projectId } = req.params;

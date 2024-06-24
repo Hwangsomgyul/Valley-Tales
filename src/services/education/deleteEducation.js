@@ -1,5 +1,5 @@
 const { educationModel } = require('../../db/models');
-const { checkAuthorization, dataNotFound } = require('../utils');
+const { checkAuthorization, dataNotFound } = require('../../utils');
 
 const deleteEducation = async (req, res, next) => {
     const { educationId } = req.params;

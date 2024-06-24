@@ -1,5 +1,5 @@
 const { userModel, certificateModel } = require('../../db/models');
-const { userNotFound } = require('../utils');
+const { userNotFound } = require('../../utils');
 
 const getAllCertificates = async (req, res, next) => {
     try {

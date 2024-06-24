@@ -1,5 +1,5 @@
 const { userModel, educationModel } = require('../../db/models');
-const { userNotFound } = require('../utils');
+const { userNotFound } = require('../../utils');
 
 const getAllEducations = async (req, res, next) => {
     try {

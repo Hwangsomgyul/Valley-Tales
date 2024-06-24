@@ -27,7 +27,6 @@ const register = require('./auth/register');
 const deleteUser = require('./auth/deleteUser');
 
 const serveStatic = require('./serveStatic');
-const { checkAuthorization, userNotFound } = require('./utils');
 
 module.exports = {
     getAllUsers,
@@ -59,6 +58,4 @@ module.exports = {
     deleteUser,
 
     serveStatic,
-    checkAuthorization,
-    userNotFound,
 };

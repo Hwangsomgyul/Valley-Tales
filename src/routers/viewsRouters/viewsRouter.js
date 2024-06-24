@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     if (!req.user) {
         return res.redirect('/login');
     }
-    return res.redirect('/users');
+    return res.redirect(`/users/${req.user.userId}`);
 });
 router.use('/login', serveStatic('login'));
 router.use('/join', serveStatic('join'));

@@ -1,5 +1,5 @@
 const { userModel } = require('../../db/models');
-const { checkAuthorization } = require('../utils');
+const { checkAuthorization } = require('../../utils');
 
 const editUser = async (req, res, next) => {
     // try catch 쓰는 방식으로 가봅시다.

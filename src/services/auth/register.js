@@ -2,12 +2,7 @@ const { userModel } = require('../../db/models');
 const bcrypt = require('bcrypt');
 
 const register = async (req, res) => {
-    // 이메일 형식을 재검증... 일단 안 적은 상황부터
-    // 프론트에서 확인하는 로직을 재검증 하려면 추가 작성 필요
     const { email, password, name } = req.body;
-    if (!email || !password || !name) {
-        return res.status(400).json({ error: "잘못된 형식" });
-    }
     // 이메일 중복 체크
     const checkExistEmail = await userModel.findByEmail(email);
     if (checkExistEmail) {

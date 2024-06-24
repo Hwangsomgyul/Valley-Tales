@@ -1,5 +1,5 @@
 const { certificateModel } = require('../../db/models');
-const { checkAuthorization, dataNotFound } = require('../utils');
+const { checkAuthorization, dataNotFound } = require('../../utils');
 
 const deleteCertificate = async (req, res, next) => {
     const { certificateId } = req.params;

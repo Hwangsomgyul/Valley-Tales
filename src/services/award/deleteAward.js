@@ -1,5 +1,5 @@
 const { awardModel } = require('../../db/models');
-const { checkAuthorization, dataNotFound } = require('../utils');
+const { checkAuthorization, dataNotFound } = require('../../utils');
 
 const deleteAward = async (req, res, next) => {
     const { awardId } = req.params;
