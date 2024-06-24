@@ -49,23 +49,44 @@
             placeholder="이메일"
             class="input-login"
           />
+          <span>@</span>
           <datalist id="email-option">
-            <option value="@gmail.com" />
-            <option value="@naver.com" />
-            <option value="@kakao.com" />
-            <option value="@daum.net" />
-            <option value="@hanmail.net" />
-            <option value="@nate.com" />
+            <option value="gmail.com" />
+            <option value="naver.com" />
+            <option value="kakao.com" />
+            <option value="daum.net" />
+            <option value="hanmail.net" />
+            <option value="nate.com" />
           </datalist>
           <input
             type="text"
             id="join-domain"
-            placeholder="@직접 입력"
+            placeholder="직접 입력"
             class="input-login"
             list="email-option"
             name="join"
           />
+          <button class="btn btn-primary check-btn-margin" id="email-reqbtn">
+            인증
+          </button>
         </div>
+
+        <div class="login-margin">
+          <label for="password" class="label-width">Password check</label>
+          <input
+            type="password"
+            id="join-emailcheck"
+            name="join"
+            placeholder="인증번호 숫자 6자리"
+            class="input-login"
+          />
+          <button class="btn btn-primary check-btn-margin" id="email-resbtn">
+            인증 확인
+          </button>
+          <p id="email-check-message" class="font-checkmsg pw-msg-layout"></p>
+        </div>
+
+        <!-- 비밀번호 -->
         <div class="login-margin">
           <label for="password" class="label-width">Password</label>
           <input
@@ -85,7 +106,7 @@
             placeholder="비밀번호 확인"
             class="input-login"
           />
-          <p id="pw-check-message" class="font-checkmsg"></p>
+          <p id="pw-check-message" class="font-checkmsg pw-msg-layout"></p>
         </div>
 
         <div class="login-margin">

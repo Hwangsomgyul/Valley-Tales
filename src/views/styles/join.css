@@ -46,3 +46,12 @@
 .mgn-15 {
   margin-top: 15px;
 }
+
+.pw-msg-layout {
+  display: inline;
+  margin-left: 10px;
+}
+
+.check-btn-margin {
+  margin-left: 5px;
+}
