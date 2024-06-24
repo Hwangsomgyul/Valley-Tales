@@ -15,7 +15,6 @@
 .font-checkmsg {
   font-size: 13px;
   color: gray;
-  padding-left: 100px;
 }
 
 .join-body {
@@ -31,4 +30,19 @@
 .center-btn {
   width: 736px;
   margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card-nohover {
+  margin: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  background-color: white;
+}
+
+.mgn-15 {
+  margin-top: 15px;
 }

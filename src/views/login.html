@@ -16,6 +16,7 @@
     />
     <!-- External CSS -->
     <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/join.css" />
     <!-- js script -->
     <script defer src="./components/UserMVP/scripts/login.js"></script>
   </head>
@@ -40,9 +41,9 @@
   <body>
     <div class="container card-body">
       <h3 class="page-title">Login</h3>
-      <form class="login-form card-body card-nohover" id="login-form">
+      <form class="login-form join-body card-nohover" id="login-form">
         <div class="login-margin">
-          <label for="email">Email address</label>
+          <label for="email" class="label-width">Email address</label>
           <input
             type="text"
             id="login-email"
@@ -70,7 +71,7 @@
           <!-- <p id="email-check-msg"></p> -->
         </div>
         <div class="login-margin">
-          <label for="password">Password</label>
+          <label for="password" class="label-width">Password</label>
           <input
             type="password"
             id="login-password"
@@ -79,13 +80,13 @@
             class="input-login"
           />
         </div>
-        <div class="login-margin">
+        <div class="center-btn">
           <button type="submit" class="btn btn-primary" id="login-btn">
             로그인
           </button>
           <button
             type="button"
-            class="nav-link margin-top-20px font-checkmsg"
+            class="nav-link font-checkmsg mgn-15"
             id="join-btn-at-login"
             onclick="location.href='join.html'"
           >
