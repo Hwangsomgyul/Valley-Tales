@@ -1,5 +1,5 @@
 // certificate.js
-import { showElement, hideElement } from './utils.js';
+import { showElement, hideElement } from "../../UserMVP/scripts/utils.js";
 
 const addCertificateBtn = document.getElementById('addCertificateBtn');
 const certificateForm = document.getElementById('certificateForm');

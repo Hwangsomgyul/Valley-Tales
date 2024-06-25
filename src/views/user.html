@@ -22,7 +22,7 @@
             <div class="col-md-4">
                 <div id="userProfile" class="mb-4">
                     <div class="card">
-                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="User Image" id="profileImage">
+                        <img src="https://cataas.com/cat" class="card-img-top" alt="User Image" id="profileImage">
                         <input type="text" class="form-control profile-input" id="imageURLInput" placeholder="이미지 URL 입력">
                         <input type="file" class="form-control profile-input image-upload" id="imageFileInput" accept="image/*">
                         <div class="image-preview" id="imagePreview"></div>
@@ -52,7 +52,7 @@
                                 <button class="btn btn-primary btn-sm" id="addEducationBtn">+</button>
                             </div>
                             <div class="education-list" id="educationList"></div>
-                            <div class="education-form" id="educationForm">
+                            <form class="education-form" id="educationForm" style="display:none">
                                 <h3>학력 추가</h3>
                                 <input type="text" id="schoolName" placeholder="학교 이름" class="form-control education-input">
                                 <input type="text" id="major" placeholder="전공" class="form-control education-input mt-2">
@@ -62,11 +62,13 @@
                                     <input type="radio" name="degree" value="석사졸업"> 석사 졸업
                                     <input type="radio" name="degree" value="박사졸업"> 박사 졸업
                                 </div>
+                                <input type="date" id="startDate" placeholder="입학날짜" class="form-control">
+                                <input type="date" id="endDate" placeholder="졸업날짜" class="form-control">
                                 <div class="buttons mt-2">
                                     <button id="confirmBtn" class="btn btn-primary">확인</button>
                                     <button id="cancelBtn" class="btn btn-secondary">취소</button>
                                 </div>
-                            </div>
+                              </form>
                         </div>
                     </div>
 
@@ -75,19 +77,19 @@
                         <div class="card">
                             <div class="card-body d-flex justify-content-between align-items-center">
                                 <h5 class="card-title">수상 이력</h5>
-                                <button class="btn btn-primary btn-sm" id="addAwardBtn">+</button>
+                                <button class="btn btn-primary btn-sm" id="award-form_addAwardBtn">+</button>
                             </div>
                             <div class="award-list" id="awardList"></div>
-                            <div class="award-form" id="awardForm">
+                            <form class="award-form" id="award-form_awardForm" style="display:none">
                               <h3>수상이력 추가</h3>
-                              <input type="text" id="awardHistory" placeholder="수상 내역" class="form-control award-input">
-                              <input type="text" id="organization" placeholder="개최 기관" class="form-control award-input mt-2">
-                              <input type="text" id="awardDate" placeholder="수상 날짜" class="form-control award-input mt-2">
+                              <input type="text" id="award-form_awardHistory" placeholder="수상 내역" class="form-control award-input">
+                              <input type="text" id="award-form_organization" placeholder="개최 기관" class="form-control award-input mt-2">
+                              <input type="date" id="award-form_awardDate" placeholder="수상 날짜" class="form-control award-input mt-2">
                               <div class="buttons mt-2">
-                                <button id="confirmBtn2" class="btn btn-primary">확인</button>
-                                <button id="cancelBtn2" class="btn btn-secondary">취소</button>
+                                <button id="awardConfirmBtn" class="btn btn-primary">확인</button>
+                                <button id="awardCancelBtn" class="btn btn-secondary">취소</button>
                               </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
 
@@ -99,7 +101,7 @@
                                 <button class="btn btn-primary btn-sm" id="addProjectBtn">+</button>
                             </div>
                             <div class="project-list" id="projectList"></div>
-                            <div class="project-form" id="projectForm">
+                            <form class="project-form" id="projectForm" style="display:none">
                                 <h3>프로젝트 추가</h3>
                                 <input type="text" id="projectName" placeholder="프로젝트 이름" class="form-control">
                                 <textarea id="projectDescription" placeholder="프로젝트 설명" class="form-control mt-2"></textarea>
@@ -107,7 +109,7 @@
                                     <button id="projectConfirmBtn" class="btn btn-primary">확인</button>
                                     <button id="projectCancelBtn" class="btn btn-secondary">취소</button>
                                 </div>
-                            </div>
+                              </form>
                         </div>
                     </div>
 
@@ -119,16 +121,16 @@
                                 <button class="btn btn-primary btn-sm" id="addCertificateBtn">+</button>
                             </div>
                             <div class="certificate-list" id="certificateList"></div>
-                            <div class="certificate-form" id="certificateForm">
+                            <form class="certificate-form" id="certificateForm" style="display:none">
                                 <h3>자격증 추가</h3>
                                 <input type="text" id="certificateName" placeholder="자격증 이름" class="form-control">
                                 <input type="text" id="certificateOrganization" placeholder="발급 기관" class="form-control mt-2">
-                                <input type="text" id="certificateDate" placeholder="발급 날짜" class="form-control mt-2">
+                                <input type="date" id="certificateDate" placeholder="발급 날짜" class="form-control mt-2">
                                 <div class="buttons mt-2">
                                     <button id="certificateConfirmBtn" class="btn btn-primary">확인</button>
                                     <button id="certificateCancelBtn" class="btn btn-secondary">취소</button>
                                 </div>
-                            </div>
+                              </form>
                         </div>
                     </div>
                 </div>
@@ -137,3 +139,4 @@
     </div>
 </body>
 </html>
+

@@ -1,5 +1,5 @@
 // award.js
-import { showElement, hideElement } from './utils.js';
+import { showElement, hideElement } from "../../UserMVP/scripts/utils.js";
 
 const [addAwardBtn, awardForm, awardHistoryInput, organizationInput, awardDateInput] = document.querySelectorAll("[id^=award-form]");
 const awardList = [];

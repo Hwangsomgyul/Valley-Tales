@@ -1,5 +1,5 @@
 // profile.js
-import { showElement, hideElement } from './utils.js';
+import { showElement, hideElement } from "../../UserMVP/scripts/utils.js";
 
 // 프로필 수정 기능
 const editProfileBtn = document.getElementById('editProfileBtn');
