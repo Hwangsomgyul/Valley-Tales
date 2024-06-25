@@ -1,73 +1,96 @@
 const mongoose = require('mongoose');
 const EducationSchema = require('../schemas/Education');
+const userModel = require('./userModel');
+
+const { NotFoundError } = require('../../utils/customError');
 
 
 //커스텀 에러
-class CustomError extends Error {
-  constructor(status, message) {
-    super(message);
-    this.status = status;
-  }
-}
+// class CustomError extends Error {
+//   constructor(status, message) {
+//     super(message);
+//     this.status = status;
+//   }
+// }
 
 // 모델 정의
 const EducationModel = mongoose.model('Edu', EducationSchema);
 
 class EducationService {
   
-  static async getEducationById(id) {
-    const educationData = await EducationModel.findById(id);
+  // static async getEducationById(id) {
+  //   const educationData = await EducationModel.findById(id);
 
-    if (!educationData) {
-      throw new CustomError(404, '해당 학력을 찾을 수 없습니다.');
-    }
+  //   if (!educationData) {
+  //     throw new CustomError(404, '해당 학력을 찾을 수 없습니다.');
+  //   }
     
-    return educationData;
-  }
-
-  static async getEducationByUserId(user_id) {
-    const educations = await EducationModel.find({ user_id });
-
-    if (!educations || educations.length === 0) {
-      throw new CustomError(404, '사용자의 학력을 찾을 수 없습니다.');
+  //   return educationData;
+  // }
+  static async getEducation(educationId) {
+    const foundEducation = await EducationModel.findOne({ educationId, deletedAt: { $exists: false }}).populate('author');
+    if (!foundEducation) {
+      throw new NotFoundError('해당 학력을 찾을 수 없습니다.');
     }
-
-    return educations;
+    return foundEducation;
   }
 
-  static async addEducation(educationData) {
-    const newEducation = new EducationModel(educationData);
-
-    try {
-      await newEducation.save();
-      return newEducation;
-    } catch (error) {
-      throw new CustomError(400, '학력 추가 실패: ' + error.message);
+  static async getAllEducationsById(userId) {
+    const foundUser = await userModel.findById(userId);
+    if (!foundUser) {
+      throw new NotFoundError('사용자가 존재하지 않습니다.');
     }
+    const allEducations = await EducationModel.find({ author: foundUser, deletedAt: { $exists: false } });
+
+    // if (!educations || educations.length === 0) {
+    //   throw new NotFoundError('사용자의 학력을 찾을 수 없습니다.');
+    // }
+
+    return allEducations;
   }
 
-  static async updateEducation(id, updateData) {
-    const updatedEducation = await EducationModel.findByIdAndUpdate(id, updateData, { new: true });
+  // static async addEducation(educationData) {
+  //   const newEducation = new EducationModel(educationData);
+
+  //   try {
+  //     await newEducation.save();
+  //     return newEducation;
+  //   } catch (error) {
+  //     throw new CustomError(400, '학력 추가 실패: ' + error.message);
+  //   }
+  // }
+  static async addEducation(data) {
+    const addedEducation = await EducationModel.create(data);
+    if (!addedEducation) {
+      throw new Error('학력 추가 중 오류가 발생했습니다.');
+    }
+    return addedEducation;
+  }
+
+  static async updateEducation(educationId, updateData) {
+    const updatedEducation = await EducationModel.findOneAndUpdate({ educationId, deletedAt: { $exists: false } }, updateData, { new: true });
 
     if (!updatedEducation) {
-      throw new CustomError(404, '해당 학력을 찾을 수 없습니다.');
+      throw new NotFoundError('해당 학력을 찾을 수 없습니다.');
     }
 
     return updatedEducation;
   }
 
-  static async deleteEducation(id) {
-    const deletedEducation = await EducationModel.findByIdAndDelete(id);
-
+  static async deleteEducation(educationId) {
+    const deletedEducation = await EducationModel.findOneAndUpdate(
+      { educationId, deletedAt: { $exists: false } },
+      { deletedAt: new Date() },
+      { new: true }
+    );
     if (!deletedEducation) {
-      throw new CustomError(404, '해당 학력을 찾을 수 없습니다.');
+      throw new NotFoundError('해당 ID의 학력을 찾을 수 없습니다.');
     }
-
     return { message: '학력 삭제 성공' };
   }
 }
 
-module.exports = { EducationService, CustomError };
+module.exports = EducationService;
 
 
 

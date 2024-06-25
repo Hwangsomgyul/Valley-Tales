@@ -11,7 +11,7 @@ const AwardSchema = new Schema({
   },
   title: {
     type: String,
-    required: true
+    required: true,
   },
   organization: {
     type: String,
@@ -23,7 +23,7 @@ const AwardSchema = new Schema({
   },
   deletedAt: {
     type: Date,
-    required: false
+    required: false,
   }
 }, {
   timestamps: true,

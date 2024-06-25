@@ -11,7 +11,7 @@ const EducationSchema = new Schema({
   },
   school: {
     type: String,
-    required: false
+    required: true,
   },
   degree: {
     type: String,

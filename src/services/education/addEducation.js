@@ -3,7 +3,7 @@ const { userModel, educationModel } = require('../../db/models');
 const addEducation = async (req, res, next) => {
     const { school, degree, major, startDate, endDate } = req.body;
     const user = await userModel.findById(req.user.userId);
-    const addedEducation = await educationModel.create({
+    const addedEducation = await educationModel.addEducation({ 
         author: user,
         school,
         degree,
@@ -11,9 +11,6 @@ const addEducation = async (req, res, next) => {
         startDate,
         endDate,
     });
-    if (!addedEducation) {
-        throw new Error('추가에 실패하였습니다.');
-    }
     return res.json({
         school: addedEducation.school,
         degree: addedEducation.degree,

@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const UserSchema = require('../schemas/User'); // UserSchema를 정의한 파일의 경로
 
+const { NotFoundError, ConflictError } = require('../../utils/customError');
+
 
 /******사용하기전 npm install aws-sdk <--- 하기*****
 // 이미지 저장시 사용하라고 피드백받음
@@ -17,12 +19,12 @@ const s3 = new AWS.S3(); // S3 인스턴스 생성
 
 
 // 커스텀 에러 클래스 정의 <--- 시간나면 따로 js파일로 분리해서 재사용성 높여보기
-class CustomError extends Error {
-  constructor(message, status) {
-    super(message);
-    this.status = status;
-  }
-}
+// class CustomError extends Error {
+//   constructor(message, status) {
+//     super(message);
+//     this.status = status;
+//   }
+// }
 
 // 모델 정의
 const UserModel = mongoose.model('User', UserSchema);
@@ -39,17 +41,17 @@ class UserService {
     //deletedAt 필드가 존재하지 않는 문서만 검색 (페이지네이션과 deletedAt 거르는 로직)
     const user = await UserModel.findOne({ email, deletedAt: { $exists: false } });
     // 에러 처리 커스텀 에러로 처리
-    if (!user) {
-      throw new CustomError(`이메일이 ${email}인 사용자를 찾을 수 없거나 이 사용자가 삭제되었습니다.`, 404);
-    }
+    // if (!user) {
+    //   throw new NotFoundError(`이메일이 ${email}인 사용자를 찾을 수 없거나 이 사용자가 삭제되었습니다.`);
+    // }
     return user;
   }
 
   // ID로 사용자 찾기
   static async findById(userId) {
-    const user = await UserModel.findOne({ _id: userId, deletedAt: { $exists: false } });
+    const user = await UserModel.findOne({ userId, deletedAt: { $exists: false } });
     if (!user) {
-      throw new CustomError(`ID가 ${userId}인 사용자를 찾을 수 없거나 이 사용자가 삭제되었습니다.`, 404);
+      throw new NotFoundError(`ID가 ${userId}인 사용자를 찾을 수 없거나 이 사용자가 삭제되었습니다.`);
     }
     return user;
   }
@@ -66,25 +68,25 @@ class UserService {
 
   // ID로 사용자 업데이트
   static async updateById(userId, newValues) {
-    const filter = { _id: userId, deletedAt: { $exists: false } };
+    const filter = { userId, deletedAt: { $exists: false } };
     const update = { $set: newValues };
     const options = { new: true };
 
     const updatedUser = await UserModel.findOneAndUpdate(filter, update, options);
     if (!updatedUser) {
-      throw new CustomError(`ID가 ${userId}인 사용자를 찾을 수 없거나 이 사용자가 삭제되었습니다.`, 404);
+      throw new NotFoundError(`ID가 ${userId}인 사용자를 찾을 수 없거나 이 사용자가 삭제되었습니다.`);
     }
     return updatedUser;
   }
 
   // ID로 사용자 삭제
   static async deleteById(userId) {
-    const user = await UserModel.findOne({ _id: userId });
+    const user = await UserModel.findOne({ userId });
     if (!user) {
-      throw new CustomError(`ID가 ${userId}인 사용자를 찾을 수 없습니다.`, 404);
+      throw new NotFoundError(`ID가 ${userId}인 사용자를 찾을 수 없습니다.`);
     }
     if (user.deletedAt) {
-      throw new CustomError(`ID가 ${userId}인 사용자는 이미 삭제되었습니다.`, 400);
+      throw new ConflictError(`ID가 ${userId}인 사용자는 이미 삭제되었습니다.`);
     }
 
     user.deletedAt = Date.now();

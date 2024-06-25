@@ -4,16 +4,13 @@ const addCertificate = async (req, res, next) => {
     try {
         const { name, organization, issuingDate, expirationDate } = req.body;
         const user = await userModel.findById(req.user.userId);
-        const addedCertificate = await certificateModel.create({
+        const addedCertificate = await certificateModel.addCertificate({
             author: user,
             name,
             organization,
             issuingDate,
             expirationDate,
         });
-        if (!addedCertificate) {
-            throw new Error('추가에 실패하였습니다.');
-        }
         return res.json({
             name: addedCertificate.name,
             organization: addedCertificate.organization,

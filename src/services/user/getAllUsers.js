@@ -1,8 +1,10 @@
 const { userModel } = require('../../db/models');
 
 const getAllUsers = async (req, res) => {
-    const allUsers = await userModel.findAll();
-    const data = allUsers.filter(user => !user.deletedAt).map(user => ({
+    const { page, limit } = req.query;
+    // const allUsers = await userModel.findAll(page, limit);
+    const { users, totalUsers } = await userModel.findAll();
+    const data = users.map(user => ({
         name: user.name,
         email: user.email,
         description: user.description,

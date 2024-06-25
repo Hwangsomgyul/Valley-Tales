@@ -4,16 +4,13 @@ const addProject = async (req, res, next) => {
     try {
         const { title, description, startDate, endDate } = req.body;
         const user = await userModel.findById(req.user.userId);
-        const addedProject = await projectModel.create({
+        const addedProject = await projectModel.addProject({
             author: user,
             title,
             description,
             startDate,
             endDate,
         });
-        if (!addedProject) {
-            throw new Error('추가에 실패하였습니다.');
-        }
         return res.json({
             title: addedProject.title,
             description: addedProject.description,

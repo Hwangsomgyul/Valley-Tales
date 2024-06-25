@@ -1,12 +1,9 @@
-const { userModel, awardModel } = require('../../db/models');
-const { userNotFound } = require('../../utils');
+const { awardModel } = require('../../db/models');
 
 const getAllAwards = async (req, res, next) => {
     try {
         const { userId } = req.params;
-        const author = await userModel.findById(userId);
-        userNotFound(author);
-        const allAwards = await awardModel.find({ author });
+        const allAwards = await awardModel.getAllAwardsById(userId);
         const data = allAwards.map(award => ({
             title: award.title,
             organization: award.organization,

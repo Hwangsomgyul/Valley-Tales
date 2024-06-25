@@ -1,14 +1,13 @@
 const { certificateModel } = require('../../db/models');
-const { checkAuthorization, dataNotFound } = require('../../utils');
+const { checkAuthorization } = require('../../utils');
 
 const editCertificate = async (req, res, next) => {
     const { certificateId } = req.params;
     try {
-        const foundCertificate = await certificateModel.findOne({ certificateId }).populate('author');
-        dataNotFound(foundCertificate);
+        const foundCertificate = await certificateModel.getCertificate(certificateId);
         checkAuthorization(foundCertificate.author.userId, req.user.userId);
         const { name, organization, issuingDate, expirationDate } = req.body;
-        const updatedCertificate = await certificateModel.findOneAndUpdate({ certificateId }, { name, organization, issuingDate, expirationDate }, {new: true});
+        const updatedCertificate = await certificateModel.updateCertificate(certificateId, { name, organization, issuingDate, expirationDate });
         return res.json({
             name: updatedCertificate.name,
             organization: updatedCertificate.organization,

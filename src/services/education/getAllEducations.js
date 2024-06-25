@@ -1,12 +1,9 @@
-const { userModel, educationModel } = require('../../db/models');
-const { userNotFound } = require('../../utils');
+const { educationModel } = require('../../db/models');
 
 const getAllEducations = async (req, res, next) => {
     try {
         const { userId } = req.params;
-        const author = await userModel.findById(userId);
-        userNotFound(author);
-        const allEducations = await educationModel.find({ author });
+        const allEducations = await educationModel.getAllEducationsById(userId);
         const data = allEducations.map(education => ({
             school: education.school,
             degree: education.degree,

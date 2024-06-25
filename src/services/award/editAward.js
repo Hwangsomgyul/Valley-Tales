@@ -1,14 +1,13 @@
 const { awardModel } = require('../../db/models');
-const { checkAuthorization, dataNotFound } = require('../../utils');
+const { checkAuthorization } = require('../../utils');
 
 const editAward = async (req, res, next) => {
     const { awardId } = req.params;
     try {
-        const foundAward = await awardModel.findOne({ awardId }).populate('author');
-        dataNotFound(foundAward);
+        const foundAward = await awardModel.getAward(awardId);
         checkAuthorization(foundAward.author.userId, req.user.userId);
         const { title, organization, date } = req.body;
-        const updatedAward = await awardModel.findOneAndUpdate({ awardId }, { title, organization, date }, {new: true});
+        const updatedAward = await awardModel.updateAward(awardId, { title, organization, date });
         return res.json({
             title: updatedAward.title,
             organization: updatedAward.organization,
