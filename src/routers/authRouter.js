@@ -18,6 +18,7 @@ router.delete('/', loginRequired, deleteUser, userLogout);
 router.post('/join', validateRegister, register);
 
 // 이메일 중복 방지 겸 인증
+// 아직 미구현
 // router.post('/email', validateEmail, verifyEmail );
 
 // 로그인

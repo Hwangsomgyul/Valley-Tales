@@ -38,10 +38,19 @@ class ConflictError extends Error {
     }
 }
 
+class InternalServerError extends Error {
+    statusCode = 500;
+    constructor(message = '에러입니다.') {
+        super(message);
+        this.name = 'InternalServerError';
+    }
+}
+
 module.exports = {
     ValidationError,
     UnauthenticatedError,
     ForbiddenError,
     NotFoundError,
     ConflictError,
+    InternalServerError,
 };

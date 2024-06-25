@@ -40,6 +40,8 @@ class UserService {
   static async findByEmail(email) {                 
     //deletedAt 필드가 존재하지 않는 문서만 검색 (페이지네이션과 deletedAt 거르는 로직)
     const user = await UserModel.findOne({ email, deletedAt: { $exists: false } });
+    // 본 함수는 이메일 중복 검사에만 사용하며 찾아낸 유저가 없을 때 통과시켜야 하기 때문에
+    // 에러 처리를 하지 않았습니다.
     // 에러 처리 커스텀 에러로 처리
     // if (!user) {
     //   throw new NotFoundError(`이메일이 ${email}인 사용자를 찾을 수 없거나 이 사용자가 삭제되었습니다.`);

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const CertificateSchema = require('../schemas/Certificate');
 const userModel = require('./userModel');
-const { NotFoundError } = require('../../utils/customError');
+const { NotFoundError, InternalServerError } = require('../../utils/customError');
 
 //커스텀에러
 // class CustomError extends Error {
@@ -34,7 +34,7 @@ class CertificateService {
   static async addCertificate(data) {
     const addedCertificate = await CertificateModel.create(data);
     if (!addedCertificate) {
-      throw new Error('자격증 추가 중 오류가 발생했습니다.');
+      throw new InternalServerError('자격증 추가 중 오류가 발생했습니다.');
     }
     return addedCertificate;
   }

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const AwardSchema = require('../schemas/Award');
 const userModel = require('./userModel');
-const { NotFoundError } = require('../../utils/customError');
+const { NotFoundError, InternalServerError } = require('../../utils/customError');
 
 // class CustomError extends Error {
 //   constructor(statusCode, message) {
@@ -26,7 +26,7 @@ class AwardService {
   static async addAward(data) {
     const addedAward = await AwardModel.create(data);
     if (!addedAward) {
-      throw new Error('수상 정보 추가 중 오류가 발생했습니다.');
+      throw new InternalServerError('수상 정보 추가 중 오류가 발생했습니다.');
     }
     return addedAward;
   }

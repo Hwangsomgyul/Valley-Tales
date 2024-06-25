@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const ProjectSchema = require('../schemas/Project');
 const userModel = require('./userModel');
 
-const { NotFoundError, ConflictError } = require('../../utils/customError');
+const { NotFoundError, InternalServerError } = require('../../utils/customError');
 
 //커스텀 에러
 // class CustomError extends Error {
@@ -34,7 +34,7 @@ class ProjectService {
     // }
     const addedProject = await ProjectModel.create(data);
     if (!addedProject) {
-      throw new Error('프로젝트 추가 중 오류가 발생했습니다.');
+      throw new InternalServerError('프로젝트 추가 중 오류가 발생했습니다.');
     }
     return addedProject;
   }

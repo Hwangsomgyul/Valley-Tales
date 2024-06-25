@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const EducationSchema = require('../schemas/Education');
 const userModel = require('./userModel');
 
-const { NotFoundError } = require('../../utils/customError');
+const { NotFoundError, InternalServerError } = require('../../utils/customError');
 
 
 //커스텀 에러
@@ -62,7 +62,7 @@ class EducationService {
   static async addEducation(data) {
     const addedEducation = await EducationModel.create(data);
     if (!addedEducation) {
-      throw new Error('학력 추가 중 오류가 발생했습니다.');
+      throw new InternalServerError('학력 추가 중 오류가 발생했습니다.');
     }
     return addedEducation;
   }
