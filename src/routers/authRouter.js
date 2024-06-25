@@ -3,9 +3,9 @@ const passport = require('passport');
 
 const router = Router();
 
-const { register, deleteUser, userLogout, changePassword, findPassword } = require('../services');
+const { register, deleteUser, userLogout, verifyEmail, changePassword, findPassword } = require('../services');
 
-const { loginRequired, validateRegister, validatePassword } = require('../middlewares');
+const { loginRequired, validateRegister, validateEmail, validatePassword } = require('../middlewares');
 
 // 비밀번호 변경
 // 비번 찾기는 스키마에 isPasswordChanged를 추가해야 함.
@@ -16,6 +16,9 @@ router.delete('/', loginRequired, deleteUser, userLogout);
 
 // 회원 가입
 router.post('/join', validateRegister, register);
+
+// 이메일 중복 방지 겸 인증
+// router.post('/email', validateEmail, verifyEmail );
 
 // 로그인
 router.post('/login', (req, res, next) => {
