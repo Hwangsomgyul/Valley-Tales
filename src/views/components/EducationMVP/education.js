@@ -1,5 +1,5 @@
 // education.js
-import { showElement, hideElement } from "../../UserMVP/scripts/utils.js";
+import { showElement, hideElement } from "./utils.js";
 
 const addEducationBtn = document.getElementById("addEducationBtn");
 const educationForm = document.getElementById("educationForm");
