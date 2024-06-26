@@ -1,6 +1,7 @@
 const getAllUsers = require('./user/getAllUsers');
 const getUser = require('./user/getUser');
 const editUser = require('./user/editUser');
+const updateImage = require('./user/updateImage');
 
 const getAllEducations = require('./education/getAllEducations');
 const addEducation = require('./education/addEducation');
@@ -36,6 +37,7 @@ module.exports = {
     getAllUsers,
     getUser,
     editUser,
+    updateImage,
     
     getAllEducations,
     addEducation,

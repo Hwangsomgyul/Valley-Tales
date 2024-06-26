@@ -30,6 +30,9 @@ const UserSchema = new Schema({
     resetPassword: {
         type: Boolean,
         default: false,
+    },
+    imageUrl: {
+        type: String,
     }
 }, {
     // timestamps가 createdAt, updatedAt 자동관리함

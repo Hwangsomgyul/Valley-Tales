@@ -1,4 +1,5 @@
 const loginRequired = require('./loginRequired');
+const imageUploader = require('./imageUploader');
 const {
     validateRegister,
     validateUser,
@@ -12,6 +13,7 @@ const {
 
 module.exports = {
     loginRequired,
+    imageUploader,
 
     validateRegister,
     validateUser,

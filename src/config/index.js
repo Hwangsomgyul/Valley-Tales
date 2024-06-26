@@ -12,4 +12,6 @@ module.exports = {
     secretKey: process.env.SECRET_KEY,
     mailServiceEmail: process.env.EMAIL,
     mailServicePassword: process.env.PASSWORD,
+    s3AccessKey: process.env.AWS_S3_ACCESS_KEY,
+    s3SecretKey: process.env.AWS_S3_SECRET_KEY,
 }

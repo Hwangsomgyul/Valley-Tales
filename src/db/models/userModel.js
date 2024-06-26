@@ -118,6 +118,14 @@ class UserService {
     return;
   }
 
+  static async updateProfileImage(userId, imageUrl) {
+    const updatedUser = await UserModel.findOneAndUpdate({ userId, deletedAt: { $exists: false }}, { imageUrl }, { new: true });
+    if (updatedUser.imageUrl !== imageUrl) {
+      throw new InternalServerError('프로필 이미지를 저장하지 못했습니다.');
+    }
+    return updatedUser.imageUrl;
+  }
+
   
   /* 미완성_ AWS S3에 이미지 업로드
   //_추가기능부분 사용못할 가능성이 큼
