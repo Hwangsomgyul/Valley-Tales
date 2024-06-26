@@ -22,10 +22,14 @@ const UserSchema = new Schema({
     },
     description: {
         type: String,
+        default: "설명을 추가해주세요.",
     },
     deletedAt: {
         type: Date,
-        required: false,
+    },
+    resetPassword: {
+        type: Boolean,
+        default: false,
     }
 }, {
     // timestamps가 createdAt, updatedAt 자동관리함

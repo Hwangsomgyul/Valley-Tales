@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const UserSchema = require('../schemas/User'); // UserSchema를 정의한 파일의 경로
 
-const { NotFoundError, ConflictError } = require('../../utils/customError');
+const { NotFoundError, ConflictError, InternalServerError } = require('../../utils/customError');
 
 
 /******사용하기전 npm install aws-sdk <--- 하기*****
@@ -83,7 +83,7 @@ class UserService {
 
   // ID로 사용자 삭제
   static async deleteById(userId) {
-    const user = await UserModel.findOne({ userId });
+    const user = await UserModel.findOne({ userId, deletedAt: { $exists: false } });
     if (!user) {
       throw new NotFoundError(`ID가 ${userId}인 사용자를 찾을 수 없습니다.`);
     }
@@ -94,6 +94,28 @@ class UserService {
     user.deletedAt = Date.now();
     await user.save();
     return '삭제가 완료되었습니다.';
+  }
+
+  static async updateResetTrue(userId) {
+    const updatedUser = await UserModel.findOneAndUpdate({ userId, deletedAt: { $exists: false }}, { resetPassword : true }, { new: true });
+    if (!updatedUser) {
+      throw new NotFoundError('사용자가 존재하지 않습니다.');
+    }
+    if (!updatedUser.resetPassword) {
+      throw new InternalServerError('패스워드 리셋 여부를 저장하지 못했습니다.');
+    }
+    return;
+  }
+
+  static async updateResetFalse(userId) {
+    const updatedUser = await UserModel.findOneAndUpdate({ userId, deletedAt: { $exists: false }}, { resetPassword : false }, { new: true });
+    if (!updatedUser) {
+      throw new NotFoundError('사용자가 존재하지 않습니다.');
+    }
+    if (updatedUser.resetPassword) {
+      throw new InternalServerError('패스워드 리셋 여부를 저장하지 못했습니다.');
+    }
+    return;
   }
 
   

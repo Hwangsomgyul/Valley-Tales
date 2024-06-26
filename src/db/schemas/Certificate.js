@@ -15,19 +15,15 @@ const CertificateSchema = new Schema({
   },
   organization: {
     type: String,
-    required: false,
   },
   issuingDate: {
     type: Date,
-    required: false
   },
   expirationDate: { 
     type: Date,
-    required: false,
   },
   deletedAt: {
     type: Date,
-    required: false,
   }
 }, {
   timestamps: true,

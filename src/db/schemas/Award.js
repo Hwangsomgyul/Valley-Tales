@@ -15,15 +15,12 @@ const AwardSchema = new Schema({
   },
   organization: {
     type: String,
-    required: false,
   },
   date: {
     type: Date,
-    required: false
   },
   deletedAt: {
     type: Date,
-    required: false,
   }
 }, {
   timestamps: true,
