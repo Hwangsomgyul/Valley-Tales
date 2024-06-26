@@ -10,7 +10,14 @@ router.get('/', (req, res) => {
     }
     return res.redirect(`/users/${req.user.userId}`);
 });
-router.use('/login', serveStatic('login'));
+
+router.use('/login', (req, res, next) => {
+    if (!!req.user) {
+        return res.redirect('/');
+    }
+    return next();
+}, serveStatic('login'));
+
 router.use('/join', serveStatic('join'));
 
 module.exports = router;

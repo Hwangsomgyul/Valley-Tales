@@ -1,0 +1,57 @@
+.input-login {
+  width: 150px;
+}
+
+.login-margin {
+  margin-top: 1rem;
+  margin-left: 100px;
+}
+
+.login-form {
+  width: 800px;
+  padding: 2rem;
+}
+
+.font-checkmsg {
+  font-size: 13px;
+  color: gray;
+}
+
+.join-body {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.label-width {
+  width: 200px;
+}
+
+.center-btn {
+  width: 736px;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.card-nohover {
+  margin: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  background-color: white;
+}
+
+.mgn-15 {
+  margin-top: 15px;
+}
+
+.pw-msg-layout {
+  display: inline;
+  margin-left: 10px;
+}
+
+.check-btn-margin {
+  margin-left: 5px;
+}

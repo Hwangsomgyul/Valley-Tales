@@ -16,16 +16,18 @@
     />
     <!-- External CSS -->
     <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/join.css" />
     <!-- js script -->
+    <script defer src="./components/UserMVP/login.js"></script>
   </head>
 
   <div class="text-container" id="navbar">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="login.html">Valley-Tales</a>
+      <a class="navbar-brand" href="/">Valley-Tales</a>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link" href="login.html">로그인</a>
+            <a class="nav-link" href="/">로그인</a>
           </li>
         </ul>
       </div>
@@ -37,39 +39,62 @@
   </div>
 
   <body>
-    <div class="container">
-      <form class="login-form" id="login-form">
-        <label for="email">Email address</label>
-        <input
-          type="email"
-          id="login-email"
-          name="email"
-          placeholder="Enter email"
-        />
+    <div class="container card-body">
+      <h3 class="page-title">Login</h3>
+      <form class="login-form join-body card-nohover" id="login-form">
+        <div class="login-margin">
+          <label for="email" class="label-width">Email address</label>
+          <input
+            type="text"
+            id="login-email"
+            name="email"
+            placeholder="email"
+            class="input-login"
+          />
+          <datalist id="email-option">
+            <option value="gmail.com" />
+            <option value="naver.com" />
+            <option value="kakao.com" />
+            <option value="daum.net" />
+            <option value="hanmail.net" />
+            <option value="nate.com" />
+          </datalist>
+          <span>@</span>
+          <input
+            type="text"
+            id="login-domain"
+            placeholder="직접 입력"
+            class="input-login"
+            list="email-option"
+          />
 
-        <!-- 이메일 유효성 검사 문구 -->
-        <!-- <p id="email-check-msg"></p> -->
-
-        <label for="password">Password</label>
-        <input
-          type="password"
-          id="login-password"
-          name="password"
-          placeholder="Password"
-        />
-        <button type="submit" class="btn btn-primary" id="login-btn">
-          로그인
-        </button>
-        <button
-          type="button"
-          class="register-button btn btn-primary"
-          id="join-btn-at-login"
-          onclick="location.href='join.html'"
-        >
-          회원가입하기
-        </button>
+          <!-- 이메일 유효성 검사 문구 -->
+          <!-- <p id="email-check-msg"></p> -->
+        </div>
+        <div class="login-margin">
+          <label for="password" class="label-width">Password</label>
+          <input
+            type="password"
+            id="login-password"
+            name="password"
+            placeholder="Password"
+            class="input-login"
+          />
+        </div>
+        <div class="center-btn">
+          <button type="submit" class="btn btn-primary" id="login-btn">
+            로그인
+          </button>
+          <button
+            type="button"
+            class="nav-link font-checkmsg mgn-15"
+            id="join-btn-at-login"
+            onclick="location.href='join.html'"
+          >
+            회원가입하기
+          </button>
+        </div>
       </form>
     </div>
-    <script src="./components/UserMVP/scripts/login.js"></script>
   </body>
 </html>

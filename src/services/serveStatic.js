@@ -1,5 +1,5 @@
 const express = require('express');
-const path = require('node:path');
+const path = require('path');
 
 const serveStatic = (resource) => {
     const resourcePath = path.join(__dirname, '../views');
