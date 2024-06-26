@@ -28,6 +28,7 @@ const deleteUser = require('./auth/deleteUser');
 const changePassword = require('./auth/changePassword');
 const findPassword = require('./auth/findPassword');
 const verifyEmail = require('./auth/verifyEmail');
+const verifyCode = require('./auth/verifyCode');
 
 const serveStatic = require('./serveStatic');
 
@@ -62,6 +63,7 @@ module.exports = {
     changePassword,
     findPassword,
     verifyEmail,
+    verifyCode,
 
     serveStatic,
 };
